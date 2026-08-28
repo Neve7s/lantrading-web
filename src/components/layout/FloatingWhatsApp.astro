@@ -9,11 +9,8 @@ const url = buildGenericWhatsApp("Hola SAGAS, vi su nueva web y quisiera cotizar
     <span class="text-xs text-[var(--color-text-muted)] hidden lg:inline">Escríbenos</span>
   </div>
   <a href={url} target="_blank" aria-label="WhatsApp ventas"
-    class="relative w-[60px] h-[60px] rounded-full bg-[#25D366] text-white grid place-items-center shadow-[0_12px_32px_rgba(0,0,0,0.22)] hover:scale-[1.05] transition">
-    <span class="absolute inset-0 rounded-full bg-[#25D366] opacity-30 animate-ping"></span>
-    <svg viewBox="0 0 24 24" width="32" height="32" fill="white" aria-hidden="true" class="relative">
-      <path d="M12 0a12 12 0 0 0-10.34 18.06L1 24l6.17-1.62A12 12 0 1 0 12 0zm5.06 17.6c-.22.62-1.26 1.19-1.75 1.26-.49.07-1.09.1-1.77-.11-.41-.13-.94-.3-1.62-.59-2.84-1.23-4.69-4.11-4.83-4.3-.14-.19-1.16-1.54-1.16-2.94 0-1.4.74-2.08 1-2.37.26-.29.57-.38.76-.38.19 0 .38 0 .55.01.18.01.42-.07.66.5.24.57.82 1.97.89 2.11.07.14.12.31.02.5-.1.19-.15.31-.3.48-.15.17-.31.36-.44.48-.13.13-.27.27-.12.54.15.27.67 1.11 1.44 1.8.99.88 1.82 1.16 2.08 1.29.26.13.42.11.57-.07.15-.17.65-.76.82-1.02.17-.26.34-.22.57-.13.23.09 1.45.68 1.7.81.25.13.42.19.48.3.06.11.06.64-.16 1.26z"/>
-    </svg>
+    class="relative w-[60px] h-[60px] grid place-items-center hover:scale-[1.05] transition drop-shadow-[0_8px_16px_rgba(0,0,0,0.22)]">
+    <img src="/logos/whatsapp-icon.svg" alt="WhatsApp" width="60" height="60" class="w-[60px] h-[60px]" loading="eager" />
   </a>
 </div>
 <a href="/catalogo" class="fixed bottom-4 left-4 z-50 hidden md:inline-flex items-center gap-2 bg-[var(--color-primary)] text-white px-4 py-3 rounded-full shadow-[var(--shadow-float)] font-medium text-sm hover:bg-[var(--blue-800)] transition">
