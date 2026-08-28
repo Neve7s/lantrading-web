@@ -1,0 +1,192 @@
+{
+  "identidad": {
+    "nombre_comercial": "SAGAS",
+    "razon_social_principal": "LAN TRADING S.A.",
+    "razon_social_fabrica": "INDUSTRIAS SAGAS S.R.L.",
+    "marca": "SAGAS",
+    "marcas_secundarias": [
+      "SAGUITA",
+      "ACU",
+      "T-SCALE",
+      "SAGAS BALANZAS"
+    ],
+    "eslogan": "40 años de experiencia fabricando productos y servicios con altos estándares de calidad",
+    "rubro": "Fabricación, importación y distribución de balanzas electrónicas, maquinaria para carnicería, procesadoras de verduras y equipos para servicios",
+    "descripcion": "Venta de balanzas electrónicas — Las mejores BALANZAS ELECTRÓNICAS del Perú",
+    "web": "https://sagas.com.pe",
+    "web_alterna": "https://jesusm43.sg-host.com",
+    "seo_title": "LAN TRADING SA - SAGAS",
+    "seo_description": "Venta de balanzas electrónicas - Las mejores BALANZAS ELECTRÓNICAS del Perú"
+  },
+  "historia": {
+    "fundacion": "1982 - INDUSTRIAS SAGAS S.R.L. dedicada a manufactura de balanzas mecánicas automáticas y balanzas pesa personas mecánicas bajo denominación BALANZAS SAGAS. Distribuidor nacional y fabricación de sierras cortadoras de carne y hueso.",
+    "expansion_2004": "30 de septiembre de 2004 — fundación de LAN TRADING S.A. para importación y distribución de balanzas electrónicas. INDUSTRIAS SAGAS S.R.L. queda como matriz fabricante de sierras cortadoras; LAN TRADING produce estructuras para balanzas electrónicas de todas las capacidades.",
+    "expansion_2007": "2007 — incorporación de importación y comercialización de moledoras de carne y otros equipos para sectores comerciales e industriales de alimentos. Posicionamiento como precursores con amplia experiencia y plantilla de profesionales altamente capacitados.",
+    "referencia_fuente": "https://sagas.com.pe/historia/"
+  },
+  "mision": "Proporcionar un « excelente producto », cumpliendo con las normas de calidad más estrictas, otorgando un servicio eficiente y personalizado a todos nuestros clientes, de esta manera creamos la conformidad con nuestra misión de proporcionar una técnica mejorada para la fabricación y distribución de nuestros productos.",
+  "vision": "En LAN TRADING S.A, nuestra visión es liderar la industria de balanzas y maquinaria gastronómica al ofrecer soluciones innovadoras y de alta calidad. Nos esforzamos por empoderar a nuestros clientes con herramientas avanzadas que mejoren la eficiencia y la precisión en sus operaciones. Nos comprometemos a establecer relaciones de confianza y a contribuir al éxito de nuestros clientes, forjando un futuro donde podamos ampliar nuestra línea de productos.",
+  "sede": {
+    "direccion": "Av. Morales Duarez # 3015, Mirones Bajos, Cercado de Lima",
+    "referencia": "A una cuadra del cruce de la Av. Universitaria con Av. Morales Duarez, cerca del puente Bella Unión",
+    "distrito": "Cercado de Lima",
+    "ciudad": "Lima",
+    "pais": "Perú",
+    "direccion_corta": "Av. Morales Duarez 3015 - Lima",
+    "mapa_iframe": "Google Maps embed en footer (coordenadas aproximadas Lima Mirones)",
+    "mapa_url": "https://www.google.com/maps/search/Av.+Morales+Duarez+3015+Lima"
+  },
+  "contacto": {
+    "telefonos": [
+      {
+        "numero": "(01) 9060954",
+        "tel": "tel:5612128",
+        "tipo": "fijo"
+      },
+      {
+        "numero": "959 683 123",
+        "tel": "tel:+51959683123",
+        "whatsapp": "https://api.whatsapp.com/send?phone=51959683123"
+      },
+      {
+        "numero": "995 741 294",
+        "tel": "tel:+51995741294",
+        "whatsapp": "https://api.whatsapp.com/send?phone=51995741294"
+      },
+      {
+        "numero": "970 507 009",
+        "tel": "tel:+51970507009",
+        "whatsapp": "https://api.whatsapp.com/send?phone=51970507009"
+      }
+    ],
+    "emails": [
+      "lantrading@gmail.com",
+      "ventas@sagas.com.pe"
+    ],
+    "formulario": {
+      "campos": [
+        "Nombre",
+        "Email",
+        "Mensaje"
+      ],
+      "endpoint": "footer contáctanos"
+    }
+  },
+  "horarios": {
+    "lunes_viernes": "8:20am – 5:30pm",
+    "sabados": "8:20am – 2:00pm",
+    "domingo": "cerrado (no publicado)"
+  },
+  "redes_sociales": {
+    "facebook": "https://www.facebook.com/lan.tradingsa",
+    "facebook_oficial": "https://www.facebook.com/SagasOficialPeru",
+    "instagram": "https://www.instagram.com/lantrading/",
+    "tiktok": "https://www.tiktok.com/@lantradingsa",
+    "youtube": "https://www.youtube.com/channel/UCYrUvbWLXrc-sQMrLpUhD0w"
+  },
+  "propuesta_valor": [
+    "Envíos a nivel nacional",
+    "Entregas a domicilio",
+    "Garantía en todos los productos (1 año + certificado de calidad)",
+    "Servicio técnico calificado",
+    "Más de 40 años al servicio del Perú",
+    "Precio por mayor y menor",
+    "Amplio catálogo: balanzas electrónicas, equipos para servicios, procesadoras de alimentos, refrigeración"
+  ],
+  "servicios": [
+    {
+      "codigo": 21103,
+      "nombre": "SERVICIO TÉCNICO DE BALANZAS",
+      "familia": "Balanzas e indicadores",
+      "alcance": "mantenimiento, calibración, reparación, certificación, repuestos"
+    },
+    {
+      "codigo": 21133,
+      "nombre": "SERVICIO TÉCNICO DE CORTADORA DE EMBUTIDOS",
+      "familia": "Cortadoras de embutidos",
+      "alcance": "instalación, configuración, reparación"
+    },
+    {
+      "codigo": 21111,
+      "nombre": "SERVICIO TÉCNICO DE EXPRIMIDORAS DE NARANJAS",
+      "familia": "Exprimidoras",
+      "alcance": "diagnóstico, reparación menor/mayor, reemplazo piezas"
+    },
+    {
+      "codigo": 21118,
+      "nombre": "SERVICIO TÉNICO DE MOLEDORAS DE CARNE",
+      "familia": "Moledoras de carne",
+      "alcance": "reparación, mantenimiento, calibración (doméstica a industrial)"
+    }
+  ],
+  "categorias_principales": [
+    "Balanzas (plataforma, colgantes, precisión, gramera, etiquetadoras, etc)",
+    "Indicadores (solo peso, peso/precio, acero inox, con impresora)",
+    "Equipos para Carnicería (moledoras, sierras, cortadoras embutidos, embutidoras, trozadores)",
+    "Equipos para Servicios (exprimidoras, extractores, empacadoras, selladoras)",
+    "Procesadoras de Verduras (peladoras, cortadoras, picadoras)",
+    "Partes y repuestos (celdas, baterías, celdas, cajas de unión, cuchillas, pantalla remota)"
+  ],
+  "metodos_pago": {
+    "nota": "Bloque Métodos de pago en footer (imagen no textual) — acepta múltiples: tarjetas, Yape, Plin, efectivo (según sección Pagos home)",
+    "home_pagos_texto": "Desde tarjetas de crédito hasta yape, plin o efectivo, ofrecemos múltiples métodos de pago."
+  },
+  "extra": {
+    "paginas": [
+      {
+        "slug": "historia",
+        "url": "https://sagas.com.pe/historia/"
+      },
+      {
+        "slug": "balanzas",
+        "url": "https://sagas.com.pe/balanzas/"
+      },
+      {
+        "slug": "indicadores",
+        "url": "https://sagas.com.pe/indicadores/"
+      },
+      {
+        "slug": "equipos-para-carniceria",
+        "url": "https://sagas.com.pe/equipos-para-carniceria/"
+      },
+      {
+        "slug": "equipos-para-servicio",
+        "url": "https://sagas.com.pe/equipos-para-servicio/"
+      },
+      {
+        "slug": "procesadora-de-verduras",
+        "url": "https://sagas.com.pe/procesadora-de-verduras/"
+      },
+      {
+        "slug": "servicio-tecnico",
+        "url": "https://sagas.com.pe/servicio-tecnico/"
+      },
+      {
+        "slug": "partes-y-respuestos",
+        "url": "https://sagas.com.pe/partes-y-respuestos/"
+      }
+    ],
+    "marcos_marcas_banners": [
+      "acu",
+      "sagas",
+      "saguita",
+      "tscale",
+      "transcell",
+      "towa",
+      "superss",
+      "super6",
+      "ohaus",
+      "nagota",
+      "excell",
+      "cas"
+    ],
+    "newsletter": "Suscripción a newsletter en footer (Recibe información de nuestros nuevos productos)"
+  },
+  "extraccion": {
+    "fecha": "2026-08-28",
+    "fuente": "sagas.com.pe + wp-json",
+    "imagenes_webp": 593,
+    "productos": 292,
+    "categorias": 64
+  }
+}

@@ -1,0 +1,173 @@
+---
+import Layout from "../layouts/Layout.astro";
+import ProductCard from "../components/catalog/ProductCard.astro";
+import ServiceCard from "../components/catalog/ServiceCard.astro";
+import empresa from "../data/empresa.json";
+import productos from "../data/productos.json";
+import servicios from "../data/servicios.json";
+import categorias from "../data/categorias.json";
+
+// excluir servicios del catálogo de productos
+const SERV_IDS = new Set(servicios.map((s:any)=>s.codigo));
+const soloProductos = productos.filter((p:any)=> !SERV_IDS.has(p.codigo));
+
+// 5 por categoria para entregable
+const porCategoria = new Map<string, any[]>();
+for (const p of soloProductos) {
+  const slug = p.categoria?.slug ?? "otros";
+  const arr = porCategoria.get(slug) ?? [];
+  if (arr.length < 5) arr.push(p);
+  porCategoria.set(slug, arr);
+}
+const destacados = Array.from(porCategoria.values()).flat().slice(0, 12);
+const catsConProd = categorias.filter(c=> (porCategoria.get(c.slug)?.length ?? 0)>0).sort((a,b)=> b.productos-a.productos).slice(0,12);
+---
+<Layout title="SAGAS — Balanzas y maquinaria | 40 años">
+  <!-- HERO -->
+  <section class="max-w-[1420px] mx-auto px-4 md:px-6 pt-8 pb-6">
+    <div class="grid lg:grid-cols-[1.15fr_0.85fr] gap-6 items-center">
+      <div>
+        <div class="inline-flex items-center gap-2 pill px-3 py-1 text-xs">● Envíos a todo el Perú · Garantía 1 año · Servicio técnico</div>
+        <h1 class="mt-3 font-display font-bold text-[28px] md:text-[40px] leading-[0.95] tracking-tight">
+          Balanzas y maquinaria<br><span class="text-[var(--color-accent)]">que trabajan</span> como tú
+        </h1>
+        <p class="mt-3 text-[15px] leading-relaxed text-[var(--color-text-muted)] max-w-[560px]">{empresa.identidad.descripcion}. Más de 40 años fabricando, importando y dando servicio técnico calificado.</p>
+        <div class="mt-5 flex flex-wrap gap-2">
+          <a href="/nosotros" class="px-5 py-2.5 rounded-full border border-[var(--color-border)] bg-white text-sm font-medium">Conócenos</a>
+          <a href="/servicios" class="px-5 py-2.5 rounded-full bg-[var(--paper-2)] border border-[var(--color-border)] text-sm font-medium">Servicios técnicos</a>
+        </div>
+        <div class="mt-6 grid grid-cols-3 gap-3 max-w-[520px]">
+          <div class="card p-3 text-center"><div class="font-bold text-[var(--color-primary)]">288</div><div class="text-xs text-[var(--color-text-muted)]">productos</div></div>
+          <div class="card p-3 text-center"><div class="font-bold text-[var(--color-primary)]">64</div><div class="text-xs text-[var(--color-text-muted)]">categorías</div></div>
+          <div class="card p-3 text-center"><div class="font-bold text-[var(--color-primary)]">4</div><div class="text-xs text-[var(--color-text-muted)]">servicios</div></div>
+        </div>
+      </div>
+      <div class="card p-3">
+        <img src="/imagenes/21803__1.webp" alt="Trozador SAGAS" class="w-full h-[340px] object-cover rounded-xl" loading="eager" fetchpriority="high" />
+        <div class="mt-3 flex items-center justify-between">
+          <div class="text-sm font-medium">Trozador F-200 · SAGAS</div>
+          <a href="/producto/trozadora-de-carnes-modelo-f-200-marca-sagas" class="btn-accent !py-2 !px-3 text-xs">Ver</a>
+        </div>
+      </div>
+    </div>
+    <div class="mt-6 grid grid-cols-2 md:grid-cols-4 gap-3">
+      {empresa.propuesta_valor.slice(0,4).map(v=>(
+        <div class="card p-3 flex items-center gap-3">
+          <div class="w-9 h-9 rounded-full bg-[var(--paper-2)] grid place-items-center border border-[var(--color-border)]">✓</div>
+          <div class="text-sm font-medium">{v}</div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- NOSOTROS teaser → página dedicada -->
+  <section class="max-w-[1420px] mx-auto px-4 md:px-6 py-6">
+    <div class="card p-6 md:p-8 flex flex-col md:flex-row gap-6 items-start">
+      <div class="flex-1">
+        <div class="flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-[var(--color-accent)]"></span>
+          <span class="text-xs tracking-[0.12em] uppercase font-semibold text-[var(--color-text-muted)]">Nosotros</span>
+        </div>
+        <h2 class="mt-2 font-display font-bold text-[20px]">LAN TRADING S.A. · 40 años</h2>
+        <p class="mt-2 text-sm leading-relaxed text-[var(--color-text-muted)]">
+          Distribuidor nacional fabricando y distribuyendo balanzas y maquinaria. {empresa.historia.fundacion.slice(0,160)}…
+        </p>
+        <a href="/nosotros" class="mt-4 inline-flex btn-primary">Conoce nuestra historia →</a>
+      </div>
+      <div class="grid grid-cols-3 gap-2 w-full md:w-[360px] shrink-0">
+        <div class="p-3 rounded-xl bg-[var(--paper-2)] border border-[var(--color-border)] text-center"><div class="font-bold">1982</div><div class="text-xs text-[var(--color-text-muted)]">Fundación</div></div>
+        <div class="p-3 rounded-xl bg-[var(--paper-2)] border border-[var(--color-border)] text-center"><div class="font-bold">2004</div><div class="text-xs text-[var(--color-text-muted)]">LAN TRADING</div></div>
+        <div class="p-3 rounded-xl bg-[var(--paper-2)] border border-[var(--color-border)] text-center"><div class="font-bold">2007</div><div class="text-xs text-[var(--color-text-muted)]">Expansión</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATEGORIAS -->
+  <section class="max-w-[1420px] mx-auto px-4 md:px-6 py-6">
+    <h2 class="font-display font-bold text-[18px]">Categorías</h2>
+    <p class="text-sm text-[var(--color-text-muted)]">Catálogo de productos · 5 por categoría en demo (servicios en sección aparte)</p>
+    <div class="mt-4 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3">
+      {catsConProd.map(c=>(
+        <a href={`/catalogo?cat=${c.slug}`} class="card p-4 hover:shadow-[var(--shadow-float)] transition group">
+          <div class="text-sm font-semibold group-hover:text-[var(--color-primary)]">{c.nombre}</div>
+          <div class="text-xs text-[var(--color-text-muted)]">{c.productos} productos · {porCategoria.get(c.slug)?.length ?? 0} en demo</div>
+          <div class="mt-2 text-xs font-medium text-[var(--color-accent)]">Ver →</div>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- DESTACADOS productos (sin servicios) -->
+  <section class="max-w-[1420px] mx-auto px-4 md:px-6 py-6">
+    <div class="flex items-end justify-between gap-2">
+      <h2 class="font-display font-bold text-[18px]">Destacados · productos</h2>
+      <a href="/catalogo" class="text-sm font-medium text-[var(--color-primary)] hover:underline">Ver catálogo →</a>
+    </div>
+    <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      {destacados.map(p=> <ProductCard producto={p} />)}
+    </div>
+  </section>
+
+  <!-- SERVICIOS — sección separada 2x2 -->
+  <section id="servicios" class="max-w-[1420px] mx-auto px-4 md:px-6 py-6">
+    <div class="flex items-end justify-between gap-2">
+      <div>
+        <h2 class="font-display font-bold text-[18px]">Servicios técnicos <span class="text-[var(--color-text-muted)] font-normal text-sm">· sección aparte</span></h2>
+        <p class="text-sm text-[var(--color-text-muted)]">Soporte calificado, repuestos originales y garantía · no están en el catálogo de productos</p>
+      </div>
+      <a href="/servicios" class="hidden md:inline text-sm font-medium text-[var(--color-primary)] hover:underline">Ver todos →</a>
+    </div>
+    <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-5">
+      {servicios.map(s=> <ServiceCard servicio={s} />)}
+    </div>
+  </section>
+
+  <!-- MARCAS -->
+  <section id="marcas" class="max-w-[1420px] mx-auto px-4 md:px-6 py-6">
+    <h2 class="font-display font-bold text-[18px]">Marcas</h2>
+    <div class="mt-3 flex flex-wrap gap-2">
+      {empresa.extra.marcos_marcas_banners.map(m=>(
+        <span class="pill px-3 py-1.5 text-xs font-medium uppercase tracking-wide">{m}</span>
+      ))}
+    </div>
+  </section>
+
+
+
+  <!-- CONTACTO + MAPA -->
+  <section id="contacto" class="max-w-[1420px] mx-auto px-4 md:px-6 pb-6">
+    <div class="grid lg:grid-cols-2 gap-4">
+      <div class="card p-6">
+        <div class="flex items-center justify-between">
+          <h3 class="font-display font-bold">Contacto</h3>
+          <a href="/contacto" class="text-xs font-medium text-[var(--color-primary)] hover:underline">Ver página completa →</a>
+        </div>
+        <p class="text-sm text-[var(--color-text-muted)]">{empresa.sede.direccion} · {empresa.sede.referencia}</p>
+        <div class="mt-3 grid grid-cols-2 gap-2 text-sm">
+          {empresa.contacto.telefonos.filter(t=>t.whatsapp).map(t=>(
+            <a href={t.whatsapp} target="_blank" class="pill px-3 py-2 text-center hover:bg-[var(--paper-2)]">{t.numero} ↗</a>
+          ))}
+        </div>
+        <div class="mt-4">
+          <div class="text-xs font-semibold tracking-wide uppercase text-[var(--color-text-muted)]">Correos</div>
+          <div class="mt-2 grid gap-2">
+            {empresa.contacto.emails.map((e,i)=>(
+              <a href={`mailto:${e}`} class="flex items-center gap-3 p-3 rounded-xl bg-[var(--paper-2)] border border-[var(--color-border)] hover:bg-white hover:border-[var(--color-primary)] group">
+                <span class="w-9 h-9 rounded-full bg-white border border-[var(--color-border)] grid place-items-center overflow-hidden shrink-0">
+                  <img src={i % 2 === 0 ? "/logos/logo_footer_true.png" : "/logos/logo_sagas_x2-1.png"} alt="LAN TRADING" class="w-7 h-7 object-contain swap-logo" loading="lazy" />
+                </span>
+                <span class="font-medium text-[14px] text-[var(--color-primary)] break-all">{e}</span>
+                <span class="ml-auto text-xs pill px-2 py-1 hidden sm:inline">Escribir →</span>
+              </a>
+            ))}
+          </div>
+        </div>
+        <div class="mt-3 text-sm">Horario: {empresa.horarios.lunes_viernes} · Sáb {empresa.horarios.sabados}</div>
+        <a href="/contacto" class="mt-4 inline-flex btn-primary w-full justify-center">Ir a contacto completo →</a>
+      </div>
+      <div class="card p-3">
+        <iframe title="Mapa SAGAS" src="https://www.google.com/maps?q=Av.+Morales+Duarez+3015+Lima&z=16&output=embed" class="w-full h-[260px] rounded-xl border border-[var(--color-border)]" loading="lazy"></iframe>
+      </div>
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,74 @@
+---
+import empresa from "../../data/empresa.json";
+---
+<header class="sticky top-0 z-40 backdrop-blur-xl bg-white/80 border-b border-[var(--color-border)]">
+  <div class="bg-[var(--color-primary)] text-white text-[11px] tracking-wide">
+    <div class="max-w-[1420px] mx-auto px-3 md:px-6 py-2 flex items-center justify-between gap-3">
+      <span class="hidden md:inline opacity-90">✦ Envíos a nivel nacional · Entregas a domicilio · Garantía 1 año · Servicio técnico calificado</span>
+      <span class="md:hidden opacity-90">Envíos a todo el Perú · Garantía 1 año</span>
+      <div class="flex items-center gap-3 shrink-0">
+        <a href={`tel:${empresa.contacto.telefonos[1].numero.replace(/\s/g,'')}`} class="hidden sm:inline opacity-90 hover:opacity-100">📞 {empresa.contacto.telefonos[1].numero}</a>
+        <span class="opacity-60">|</span>
+        <span class="opacity-80 hidden sm:inline">{empresa.horarios.lunes_viernes}</span>
+      </div>
+    </div>
+  </div>
+  <div class="max-w-[1420px] mx-auto px-3 md:px-6 py-3 flex items-center gap-4">
+    <a href="/" class="flex items-center gap-3 shrink-0">
+      <div id="header-logos" class="relative w-[200px] h-9 hidden sm:block">
+        <img id="logo-a" src="/logos/logo_sagas_x2-1.png" alt="SAGAS" width="200" height="58" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-500" />
+        <img id="logo-b" src="/logos/logo_footer_true.png" alt="LAN TRADING S.A." width="200" height="58" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-500 opacity-0" />
+      </div>
+      <img src="/logos/logo_sagas_x2-1.png" alt="SAGAS" width="92" height="58" class="h-9 w-auto object-contain sm:hidden" loading="eager" />
+    </a>
+
+    <nav class="hidden lg:flex items-center gap-1 ml-4" aria-label="principal">
+      <a href="/" class="px-3 py-2 rounded-full text-sm font-medium hover:bg-[var(--paper-2)]">Inicio</a>
+      <a href="/catalogo" class="px-3 py-2 rounded-full text-sm font-medium hover:bg-[var(--paper-2)]">Catálogo</a>
+      <a href="/servicios" class="px-3 py-2 rounded-full text-sm font-medium hover:bg-[var(--paper-2)]">Servicios</a>
+      <a href="/nosotros" class="px-3 py-2 rounded-full text-sm font-medium hover:bg-[var(--paper-2)]">Nosotros</a>
+      <a href="/contacto" class="px-3 py-2 rounded-full text-sm font-medium hover:bg-[var(--paper-2)]">Contacto</a>
+    </nav>
+
+    <div class="ml-auto flex items-center gap-2">
+      <a href="/catalogo" class="hidden sm:inline-flex btn-primary !py-2 !px-4 text-[13px]">Ver catálogo</a>
+      <a href={`https://api.whatsapp.com/send?phone=51959683123&text=${encodeURIComponent('Hola SAGAS, quisiera cotizar')}`} target="_blank" class="hidden sm:inline-flex items-center gap-1.5 btn-accent !py-2 !px-4 text-[13px]">
+        <span>WhatsApp</span> Ventas
+      </a>
+      <!-- hamburger mobile -->
+      <button id="menu-btn" aria-label="Abrir menú" aria-expanded="false" class="lg:hidden w-10 h-10 grid place-items-center rounded-full border border-[var(--color-border)] bg-white">
+        <span id="menu-icon" class="text-[18px]">☰</span>
+      </button>
+    </div>
+  </div>
+  <!-- mobile drawer -->
+  <div id="mobile-nav" class="hidden lg:hidden border-t border-[var(--color-border)] bg-white">
+    <nav class="max-w-[1420px] mx-auto px-4 py-3 grid gap-1">
+      <a href="/" class="px-3 py-2.5 rounded-xl hover:bg-[var(--paper-2)] font-medium">Inicio</a>
+      <a href="/catalogo" class="px-3 py-2.5 rounded-xl hover:bg-[var(--paper-2)] font-medium">Catálogo · 288 productos</a>
+      <a href="/servicios" class="px-3 py-2.5 rounded-xl bg-[var(--paper-2)] font-medium border-l-4 border-[var(--color-primary)]">Servicios técnicos · 4</a>
+      <a href="/nosotros" class="px-3 py-2.5 rounded-xl hover:bg-[var(--paper-2)] font-medium">Nosotros · Historia</a>
+      <a href="/contacto" class="px-3 py-2.5 rounded-xl bg-[var(--paper-2)] font-medium border-l-4 border-[var(--color-primary)]">Contacto</a>
+      <div class="pt-2 flex gap-2">
+        <a href="/catalogo" class="flex-1 text-center btn-primary">Ver catálogo</a>
+        <a href="https://api.whatsapp.com/send?phone=51959683123&text=Hola%20SAGAS" target="_blank" class="flex-1 text-center btn-accent">WhatsApp</a>
+      </div>
+    </nav>
+  </div>
+</header>
+<script>
+  const btn = document.getElementById('menu-btn');
+  const nav = document.getElementById('mobile-nav');
+  const icon = document.getElementById('menu-icon');
+  btn?.addEventListener('click', () => {
+    const open = nav?.classList.toggle('hidden');
+    const isOpen = !open;
+    btn.setAttribute('aria-expanded', String(isOpen));
+    if (icon) icon.textContent = isOpen ? '✕' : '☰';
+  });
+  nav?.querySelectorAll('a').forEach(a=> a.addEventListener('click', ()=> {
+    nav.classList.add('hidden');
+    btn?.setAttribute('aria-expanded','false');
+    if(icon) icon.textContent='☰';
+  }));
+</script>

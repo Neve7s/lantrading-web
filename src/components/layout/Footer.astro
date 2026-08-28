@@ -1,0 +1,61 @@
+---
+import empresa from "../../data/empresa.json";
+import PaymentMethods from "../ui/PaymentMethods.astro";
+const telHref = (n:string)=> `tel:${n.replace(/\s|\(|\)|-/g,'')}`;
+---
+<footer class="mt-16 border-t border-[var(--color-border)] bg-white">
+  <div class="max-w-[1420px] mx-auto px-4 md:px-6 py-10 grid grid-cols-1 md:grid-cols-4 gap-8">
+    <div>
+      <div class="flex items-center gap-3">
+        <img src="/logos/logo_sagas_x2-1.png" alt="SAGAS" width="84" height="52" class="h-10 w-auto object-contain" loading="lazy" />
+        <img src="/logos/logo_footer_true.png" alt="LAN TRADING S.A." width="100" height="34" class="h-8 w-auto object-contain" loading="lazy" />
+      </div>
+      <p class="mt-3 text-sm text-[var(--color-text-muted)] leading-relaxed">{empresa.identidad.descripcion}. {empresa.propuesta_valor.slice(0,2).join(" · ")}.</p>
+      <div class="mt-4 flex gap-2">
+        <a href={empresa.redes_sociales.facebook} target="_blank" class="w-9 h-9 rounded-full bg-[var(--paper-2)] grid place-items-center border border-[var(--color-border)] hover:bg-white">f</a>
+        <a href={empresa.redes_sociales.instagram} target="_blank" class="w-9 h-9 rounded-full bg-[var(--paper-2)] grid place-items-center border border-[var(--color-border)]">◎</a>
+        <a href={empresa.redes_sociales.tiktok} target="_blank" class="w-9 h-9 rounded-full bg-[var(--paper-2)] grid place-items-center border border-[var(--color-border)]">♪</a>
+      </div>
+    </div>
+    <div>
+      <h4 class="font-display font-semibold text-sm">Sede</h4>
+      <p class="mt-2 text-sm text-[var(--color-text-muted)]">{empresa.sede.direccion}<br>{empresa.sede.referencia}</p>
+      <p class="mt-2 text-sm"><span class="font-medium">Horario:</span> {empresa.horarios.lunes_viernes} · Sáb {empresa.horarios.sabados}</p>
+    </div>
+    <div>
+      <h4 class="font-display font-semibold text-sm">Contacto</h4>
+      <ul class="mt-2 space-y-1.5 text-sm">
+        {empresa.contacto.telefonos.map(t=>(
+          <li><a href={telHref(t.numero)} class="hover:text-[var(--color-primary)]">{t.numero}</a> <a href={t.whatsapp} target="_blank" class="ml-2 text-[11px] px-2 py-0.5 pill">WhatsApp</a></li>
+        ))}
+      </ul>
+      <div class="mt-3">
+        <div class="text-xs font-semibold tracking-wide uppercase text-[var(--color-text-muted)]">Correos</div>
+        <div class="mt-1.5 grid gap-1.5">
+          {empresa.contacto.emails.map((e,i)=>(
+            <a href={`mailto:${e}`} class="flex items-center gap-2 px-2.5 py-1.5 rounded-lg bg-[var(--paper-2)] border border-[var(--color-border)] hover:border-[var(--color-primary)]">
+              <span class="w-6 h-6 rounded-full bg-white border border-[var(--color-border)] grid place-items-center overflow-hidden shrink-0">
+                <img src={i % 2 === 0 ? "/logos/logo_footer_true.png" : "/logos/logo_sagas_x2-1.png"} alt="" class="w-5 h-5 object-contain swap-logo" loading="lazy" />
+              </span>
+              <span class="text-[13px] font-medium text-[var(--color-primary)] break-all">{e}</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+     <div>
+      <h4 class="font-display font-semibold text-sm">Empresa</h4>
+      <p class="mt-2 text-[12px] leading-relaxed text-[var(--color-text-muted)]">
+        <strong>{empresa.identidad.razon_social_principal}</strong> · {empresa.historia.fundacion.slice(0,110)}…<br>
+        <a href="/nosotros" class="text-[var(--color-primary)] hover:underline">Ver historia completa →</a>
+      </p>
+      <div class="mt-3 text-[11px] text-[var(--color-text-muted)]">© 2026 SAGAS. Más de 40 años al servicio del Perú.</div>
+    </div>
+  </div>
+  <div class="max-w-[1420px] mx-auto px-4 md:px-6 pb-8">
+    <PaymentMethods />
+  </div>
+  <div class="border-t border-[var(--color-border)] py-3 text-center text-[11px] text-[var(--color-text-muted)]">
+    Hecho con estilo escandinavo · Azul #0B2A4A · Rojo #E53935 · Blanco · Datos reales de <code>datos-sagas/</code>
+  </div>
+</footer>

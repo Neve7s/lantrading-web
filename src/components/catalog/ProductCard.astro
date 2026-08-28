@@ -1,0 +1,39 @@
+---
+import { buildWhatsAppUrl } from "../../lib/whatsapp";
+import { truncate } from "../../lib/format";
+interface Props {
+  producto: {
+    codigo: number; nombre: string; slug: string;
+    categoria: any; marca: string; modelo: string;
+    imagen_principal: string; imagenes: string[];
+    especificaciones: string[]; descripcion_corta: string;
+  }
+}
+const { producto } = Astro.props;
+const wa = buildWhatsAppUrl(producto, { categoria: producto.categoria?.nombre });
+const img = `/${producto.imagen_principal}`;
+---
+<article class="card overflow-hidden flex flex-col group hover:shadow-[var(--shadow-float)] transition-all">
+  <a href={`/producto/${producto.slug}`} class="block overflow-hidden bg-[var(--paper-2)]">
+    <img src={img} alt={producto.nombre} loading="lazy" width="600" height="450"
+      class="w-full h-[190px] object-cover group-hover:scale-[1.02] transition duration-300" />
+  </a>
+  <div class="p-3.5 flex flex-col gap-1.5 flex-1">
+    <div class="flex items-center gap-1.5 flex-wrap">
+      <span class="text-[10px] tracking-[0.08em] uppercase px-2 py-1 rounded-full bg-[var(--paper-2)] border border-[var(--color-border)] text-[var(--color-text-muted)]">{producto.categoria?.nombre ?? "General"}</span>
+      {producto.marca && <span class="text-[10px] px-2 py-1 rounded-full bg-[var(--color-primary)] text-white">{producto.marca}</span>}
+      {producto.modelo && <span class="text-[10px] px-2 py-1 pill">{producto.modelo}</span>}
+    </div>
+    <a href={`/producto/${producto.slug}`} class="font-display font-semibold text-[13px] leading-[1.35] line-clamp-2 hover:text-[var(--color-primary)]">{producto.nombre}</a>
+    <p class="text-[12px] text-[var(--color-text-muted)] line-clamp-2">{truncate(producto.descripcion_corta || producto.especificaciones.slice(0,2).join(" · "), 110)}</p>
+    <div class="flex items-center gap-1.5 flex-wrap text-[11px] text-[var(--color-text-muted)]">
+      <span class="pill px-2 py-1">{producto.imagenes.length} fotos</span>
+      <span class="pill px-2 py-1">Cód. {producto.codigo}</span>
+      <span class="ml-auto text-[11px] font-medium text-[var(--color-accent)]">A cotizar</span>
+    </div>
+    <div class="mt-2 grid grid-cols-2 gap-2">
+      <a href={`/producto/${producto.slug}`} class="text-center text-sm font-medium py-2 rounded-full border border-[var(--color-border)] hover:bg-[var(--paper-2)]">Ver detalle</a>
+      <a href={wa} target="_blank" class="text-center text-sm font-bold py-2 rounded-full bg-[var(--color-accent)] text-white hover:bg-[var(--red-700)]">Comprar</a>
+    </div>
+  </div>
+</article>

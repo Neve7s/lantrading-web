@@ -1,0 +1,578 @@
+[
+  {
+    "codigo": 1411,
+    "nombre": "Amarrador de Embutidos",
+    "slug": "amarrador-de-embutidos",
+    "descripcion": "Producción más rápida y eficiente en comparación con el trabajo manual, garantizando que todos los chorizos tengan el mismo tamaño y forma, lo que mejora la presentación del producto final.",
+    "url": "https://sagas.com.pe/product-category/amarrador-de-embutidos/",
+    "padre": 0,
+    "productos": 2
+  },
+  {
+    "codigo": 664,
+    "nombre": "Balanza Pallet",
+    "slug": "balanza-pallet-balanza-pallet",
+    "descripcion": "",
+    "url": "https://sagas.com.pe/product-category/balanza-pallet-balanza-pallet/",
+    "padre": 0,
+    "productos": 1
+  },
+  {
+    "codigo": 1352,
+    "nombre": "Balanzas",
+    "slug": "balanzas",
+    "descripcion": "Brindamos servicio de mantenimiento general, calibración, reparación de averías, pruebas de funcionamiento, certificados y mucho más",
+    "url": "https://sagas.com.pe/product-category/balanzas/",
+    "padre": 0,
+    "productos": 1
+  },
+  {
+    "codigo": 479,
+    "nombre": "Balanzas Colgantes",
+    "slug": "balanzas-colgantes",
+    "descripcion": "",
+    "url": "https://sagas.com.pe/product-category/balanzas-colgantes/",
+    "padre": 0,
+    "productos": 13
+  },
+  {
+    "codigo": 242,
+    "nombre": "Balanzas con Impresoras de Tickets",
+    "slug": "balanzas-con-impresoras-de-tickets",
+    "descripcion": "",
+    "url": "https://sagas.com.pe/product-category/balanzas-con-impresoras-de-tickets/",
+    "padre": 0,
+    "productos": 7
+  },
+  {
+    "codigo": 463,
+    "nombre": "Balanzas Cuenta Piezas",
+    "slug": "balanzas-cuenta-piezas",
+    "descripcion": "",
+    "url": "https://sagas.com.pe/product-category/balanzas-cuenta-piezas/",
+    "padre": 0,
+    "productos": 1
+  },
+  {
+    "codigo": 460,
+    "nombre": "Balanzas de Cocina",
+    "slug": "balanzas-de-cocina",
+    "descripcion": "",
+    "url": "https://sagas.com.pe/product-category/balanzas-de-cocina/",
+    "padre": 0,
+    "productos": 4
+  },
+  {
+    "codigo": 132,
+    "nombre": "Balanzas de Plataforma",
+    "slug": "balanzas-de-plataforma",
+    "descripcion": "",
+    "url": "https://sagas.com.pe/product-category/balanzas-de-plataforma/",
+    "padre": 0,
+    "productos": 47
+  },
+  {
+    "codigo": 253,
+    "nombre": "Balanzas de Plataforma 500kg",
+    "slug": "balanzas-de-plataforma-500kg",
+    "descripcion": "",
+    "url": "https://sagas.com.pe/product-category/balanzas-de-plataforma/balanzas-de-plataforma-500kg/",
+    "padre": 132,
+    "productos": 14
+  },
+  {
+    "codigo": 377,
+    "nombre": "Balanzas de Plataforma Acero Inox 500kg",
+    "slug": "balanzas-de-plataforma-acero-inox-500kg",
+    "descripcion": "",
+    "url": "https://sagas.com.pe/product-category/balanzas-de-plataforma/balanzas-de-plataforma-para-ambientes-humedos/balanzas-de-plataforma-acero-inox-500kg/",
+    "padre": 254,
+    "productos": 6
+  },
+  {
+    "codigo": 254,
+    "nombre": "Balanzas de Plataforma para Ambientes Húmedos",
+    "slug": "balanzas-de-plataforma-para-ambientes-humedos",
+    "descripcion": "",
+    "url": "https://sagas.com.pe/product-category/balanzas-de-plataforma/balanzas-de-plataforma-para-ambientes-humedos/",
+    "padre": 132,
+    "productos": 13
+  },
+  {
+    "codigo": 442,
+    "nombre": "Balanzas de Precisión",
+    "slug": "balanzas-de-precision",
+    "descripcion": "",
+    "url": "https://sagas.com.pe/product-category/balanzas-de-precision/",
+    "padre": 0,
+    "productos": 19
+  },
+  {
+    "codigo": 385,
+    "nombre": "Balanzas Electromecánicas",
+    "slug": "balanzas-electromecanicas",
+    "descripcion": "",
+    "url": "https://sagas.com.pe/product-category/balanzas-electromecanicas/",
+    "padre": 0,
+    "productos": 3
+  },
+  {
+    "codigo": 404,
+    "nombre": "Balanzas Electrónica",
+    "slug": "balanzas-electronica",
+    "descripcion": "",
+    "url": "https://sagas.com.pe/product-category/balanzas-electronica/",
+    "padre": 0,
+    "productos": 10
+  },
+  {
+    "codigo": 611,
+    "nombre": "Balanzas Etiquetadoras",
+    "slug": "balanzas-etiquetadoras",
+    "descripcion": "",
+    "url": "https://sagas.com.pe/product-category/balanzas-etiquetadoras/",
+    "padre": 0,
+    "productos": 4
+  },
+  {
+    "codigo": 418,
+    "nombre": "Balanzas Gramera",
+    "slug": "balanzas-gramera",
+    "descripcion": "",
+    "url": "https://sagas.com.pe/product-category/balanzas-gramera/",
+    "padre": 0,
+    "productos": 10
+  },
+  {
+    "codigo": 1365,
+    "nombre": "Balanzas Inalámbricas",
+    "slug": "sistema-inalambrico-para-balanzas",
+    "descripcion": "",
+    "url": "https://sagas.com.pe/product-category/sistema-inalambrico-para-balanzas/",
+    "padre": 0,
+    "productos": 6
+  },
+  {
+    "codigo": 255,
+    "nombre": "Balanzas para Ambientes Húmedos",
+    "slug": "balanzas-para-ambientes-humedos",
+    "descripcion": "",
+    "url": "https://sagas.com.pe/product-category/balanzas-para-ambientes-humedos/",
+    "padre": 0,
+    "productos": 15
+  },
+  {
+    "codigo": 530,
+    "nombre": "Balanzas para Camión",
+    "slug": "balanzas-para-camion",
+    "descripcion": "",
+    "url": "https://sagas.com.pe/product-category/balanzas-para-camion/",
+    "padre": 0,
+    "productos": 2
+  },
+  {
+    "codigo": 390,
+    "nombre": "Balanzas para Ganado",
+    "slug": "balanzas-para-ganado",
+    "descripcion": "",
+    "url": "https://sagas.com.pe/product-category/balanzas-para-ganado/",
+    "padre": 0,
+    "productos": 3
+  },
+  {
+    "codigo": 628,
+    "nombre": "Balanzas para Veterinaria",
+    "slug": "balanzas-para-veterinaria",
+    "descripcion": "",
+    "url": "https://sagas.com.pe/product-category/balanzas-para-veterinaria/",
+    "padre": 0,
+    "productos": 4
+  },
+  {
+    "codigo": 516,
+    "nombre": "Balanzas Pesa Personas",
+    "slug": "balanzas-pesa-personas",
+    "descripcion": "",
+    "url": "https://sagas.com.pe/product-category/balanzas-pesa-personas/",
+    "padre": 0,
+    "productos": 5
+  },
+  {
+    "codigo": 869,
+    "nombre": "Balanzas Super Económicas",
+    "slug": "balanzas-super-economicas",
+    "descripcion": "",
+    "url": "https://sagas.com.pe/product-category/balanzas-super-economicas/",
+    "padre": 0,
+    "productos": 14
+  },
+  {
+    "codigo": 1334,
+    "nombre": "Balanzas Tipo Rampa",
+    "slug": "balanzas-tipo-rampa",
+    "descripcion": "",
+    "url": "https://sagas.com.pe/product-category/balanzas-tipo-rampa/",
+    "padre": 0,
+    "productos": 6
+  },
+  {
+    "codigo": 741,
+    "nombre": "Baterias",
+    "slug": "bateiras",
+    "descripcion": "",
+    "url": "https://sagas.com.pe/product-category/bateiras/",
+    "padre": 0,
+    "productos": 3
+  },
+  {
+    "codigo": 743,
+    "nombre": "Caja de Unión",
+    "slug": "caja-de-union",
+    "descripcion": "",
+    "url": "https://sagas.com.pe/product-category/caja-de-union/",
+    "padre": 0,
+    "productos": 3
+  },
+  {
+    "codigo": 365,
+    "nombre": "Caja Registradora",
+    "slug": "caja-registradora",
+    "descripcion": "",
+    "url": "https://sagas.com.pe/product-category/equipos-para-servicios/caja-registradora/",
+    "padre": 364,
+    "productos": 1
+  },
+  {
+    "codigo": 742,
+    "nombre": "Celdas",
+    "slug": "celdas",
+    "descripcion": "",
+    "url": "https://sagas.com.pe/product-category/celdas/",
+    "padre": 0,
+    "productos": 4
+  },
+  {
+    "codigo": 15,
+    "nombre": "Coche de Acero para Balanzas",
+    "slug": "uncategorized",
+    "descripcion": "",
+    "url": "https://sagas.com.pe/product-category/uncategorized/",
+    "padre": 0,
+    "productos": 2
+  },
+  {
+    "codigo": 309,
+    "nombre": "Cortador de Embutidos",
+    "slug": "cortador-de-embutidos",
+    "descripcion": "",
+    "url": "https://sagas.com.pe/product-category/equipos-para-procesar-alimentos/cortador-de-embutidos/",
+    "padre": 270,
+    "productos": 8
+  },
+  {
+    "codigo": 626,
+    "nombre": "Cortadora de Embutidos",
+    "slug": "cortadora-de-embutidos",
+    "descripcion": "",
+    "url": "https://sagas.com.pe/product-category/cortadora-de-embutidos/",
+    "padre": 0,
+    "productos": 1
+  },
+  {
+    "codigo": 331,
+    "nombre": "Cortadora de Vegetales",
+    "slug": "cortadora-de-vegetales",
+    "descripcion": "",
+    "url": "https://sagas.com.pe/product-category/equipos-para-procesar-alimentos/cortadora-de-vegetales/",
+    "padre": 270,
+    "productos": 3
+  },
+  {
+    "codigo": 1362,
+    "nombre": "Cortadoras de Embutidos",
+    "slug": "cortadoras-de-embutidos",
+    "descripcion": "En nuestro servicio técnico especializado en cortadoras de embutidos, nos comprometemos a brindar soluciones rápidas y eficientes para resolver cualquier problema que puedan enfrentar nuestros clientes con sus equipos. Con años de experiencia en el campo, nuestro equipo de técnicos altamente capacitados está listo para atender sus necesidades de reparación y mantenimiento con la más alta calidad y profesionalismo. Nuestros servicios incluyen diagnóstico preciso de desperfectos, reparaciones expertas, ajustes y calibraciones, así como mantenimiento preventivo para garantizar el funcionamiento óptimo de las cortadoras de embutidos. Utilizamos herramientas y técnicas de última generación para asegurar resultados precisos y duraderos.",
+    "url": "https://sagas.com.pe/product-category/cortadoras-de-embutidos/",
+    "padre": 0,
+    "productos": 1
+  },
+  {
+    "codigo": 744,
+    "nombre": "Cuchillas",
+    "slug": "cuchillas",
+    "descripcion": "",
+    "url": "https://sagas.com.pe/product-category/cuchillas/",
+    "padre": 0,
+    "productos": 1
+  },
+  {
+    "codigo": 559,
+    "nombre": "Cutter",
+    "slug": "cutter",
+    "descripcion": "",
+    "url": "https://sagas.com.pe/product-category/equipos-para-procesar-alimentos/cutter/",
+    "padre": 270,
+    "productos": 4
+  },
+  {
+    "codigo": 298,
+    "nombre": "Embutidora de carne",
+    "slug": "embutidora-de-carne",
+    "descripcion": "",
+    "url": "https://sagas.com.pe/product-category/equipos-para-procesar-alimentos/embutidora-de-carne/",
+    "padre": 270,
+    "productos": 11
+  },
+  {
+    "codigo": 340,
+    "nombre": "Empacadoras",
+    "slug": "empacadoras",
+    "descripcion": "",
+    "url": "https://sagas.com.pe/product-category/equipos-para-procesar-alimentos/empacadoras/",
+    "padre": 270,
+    "productos": 8
+  },
+  {
+    "codigo": 270,
+    "nombre": "Equipos para Procesar Alimentos",
+    "slug": "equipos-para-procesar-alimentos",
+    "descripcion": "",
+    "url": "https://sagas.com.pe/product-category/equipos-para-procesar-alimentos/",
+    "padre": 0,
+    "productos": 66
+  },
+  {
+    "codigo": 364,
+    "nombre": "Equipos para Servicios",
+    "slug": "equipos-para-servicios",
+    "descripcion": "",
+    "url": "https://sagas.com.pe/product-category/equipos-para-servicios/",
+    "padre": 0,
+    "productos": 3
+  },
+  {
+    "codigo": 359,
+    "nombre": "Exprimidor de Naranjas",
+    "slug": "exprimidor-de-naranjas",
+    "descripcion": "",
+    "url": "https://sagas.com.pe/product-category/equipos-para-procesar-alimentos/exprimidor-de-naranjas/",
+    "padre": 270,
+    "productos": 2
+  },
+  {
+    "codigo": 1355,
+    "nombre": "Exprimidoras de Naranjas",
+    "slug": "exprimidoras-de-naranjas",
+    "descripcion": "Brindamos Servicio Técnico en Máquinas Exprimidoras de Naranjas",
+    "url": "https://sagas.com.pe/product-category/exprimidoras-de-naranjas/",
+    "padre": 0,
+    "productos": 1
+  },
+  {
+    "codigo": 353,
+    "nombre": "Extractor de Jugos",
+    "slug": "extractor-de-jugos",
+    "descripcion": "",
+    "url": "https://sagas.com.pe/product-category/equipos-para-procesar-alimentos/extractor-de-jugos/",
+    "padre": 270,
+    "productos": 2
+  },
+  {
+    "codigo": 1446,
+    "nombre": "Fileteadora de Carne",
+    "slug": "fileteadora-de-carne",
+    "descripcion": "",
+    "url": "https://sagas.com.pe/product-category/fileteadora-de-carne/",
+    "padre": 0,
+    "productos": 2
+  },
+  {
+    "codigo": 598,
+    "nombre": "Formador de Hamburguesa",
+    "slug": "formador-de-hamburguesa",
+    "descripcion": "",
+    "url": "https://sagas.com.pe/product-category/equipos-para-procesar-alimentos/formador-de-hamburguesa/",
+    "padre": 270,
+    "productos": 3
+  },
+  {
+    "codigo": 627,
+    "nombre": "Indicadores con Impresora",
+    "slug": "indicadores-con-impresora",
+    "descripcion": "",
+    "url": "https://sagas.com.pe/product-category/indicadores-con-impresora/",
+    "padre": 0,
+    "productos": 3
+  },
+  {
+    "codigo": 496,
+    "nombre": "Indicadores de balanzas",
+    "slug": "indicadores-de-balanzas",
+    "descripcion": "",
+    "url": "https://sagas.com.pe/product-category/indicadores-de-balanzas/",
+    "padre": 0,
+    "productos": 33
+  },
+  {
+    "codigo": 623,
+    "nombre": "Indicadores Peso/Acero Inox",
+    "slug": "indicadores-pesoacero-inox",
+    "descripcion": "",
+    "url": "https://sagas.com.pe/product-category/indicadores-de-balanzas/indicadores-pesoacero-inox/",
+    "padre": 496,
+    "productos": 8
+  },
+  {
+    "codigo": 621,
+    "nombre": "Indicadores peso/precio",
+    "slug": "indicadores-peso-precio",
+    "descripcion": "",
+    "url": "https://sagas.com.pe/product-category/indicadores-de-balanzas/indicadores-peso-precio/",
+    "padre": 496,
+    "productos": 7
+  },
+  {
+    "codigo": 622,
+    "nombre": "Indicadores solo peso",
+    "slug": "indicadores-solo-peso",
+    "descripcion": "",
+    "url": "https://sagas.com.pe/product-category/indicadores-de-balanzas/indicadores-solo-peso/",
+    "padre": 496,
+    "productos": 8
+  },
+  {
+    "codigo": 78,
+    "nombre": "Luxury Sports Shoes",
+    "slug": "luxury-sports-shoes",
+    "descripcion": "",
+    "url": "https://sagas.com.pe/product-category/luxury-sports-shoes/",
+    "padre": 0,
+    "productos": 0
+  },
+  {
+    "codigo": 624,
+    "nombre": "Máquina Heladera",
+    "slug": "maquina-heladera",
+    "descripcion": "",
+    "url": "https://sagas.com.pe/product-category/maquina-heladera/",
+    "padre": 0,
+    "productos": 1
+  },
+  {
+    "codigo": 569,
+    "nombre": "Mezcladoras",
+    "slug": "mezcladoras",
+    "descripcion": "",
+    "url": "https://sagas.com.pe/product-category/equipos-para-procesar-alimentos/mezcladoras/",
+    "padre": 270,
+    "productos": 5
+  },
+  {
+    "codigo": 285,
+    "nombre": "Moledora",
+    "slug": "moledora",
+    "descripcion": "",
+    "url": "https://sagas.com.pe/product-category/equipos-para-procesar-alimentos/moledora/",
+    "padre": 270,
+    "productos": 4
+  },
+  {
+    "codigo": 1357,
+    "nombre": "Moledoras de Carne",
+    "slug": "moledoras-de-carne",
+    "descripcion": "No dejes que una moledora de carne averiada detenga tu producción. Nuestro equipo técnico experto está listo para resolver cualquier problema y mantener tu negocio en marcha",
+    "url": "https://sagas.com.pe/product-category/moledoras-de-carne/",
+    "padre": 0,
+    "productos": 1
+  },
+  {
+    "codigo": 610,
+    "nombre": "Ofertas del Día",
+    "slug": "ofertas-del-dia",
+    "descripcion": "",
+    "url": "https://sagas.com.pe/product-category/ofertas-del-dia/",
+    "padre": 0,
+    "productos": 8
+  },
+  {
+    "codigo": 682,
+    "nombre": "Pantalla Remota",
+    "slug": "pantalla-remota",
+    "descripcion": "",
+    "url": "https://sagas.com.pe/product-category/pantalla-remota/",
+    "padre": 0,
+    "productos": 2
+  },
+  {
+    "codigo": 317,
+    "nombre": "Peladora de Ajos",
+    "slug": "peladora-de-ajos",
+    "descripcion": "",
+    "url": "https://sagas.com.pe/product-category/equipos-para-procesar-alimentos/peladora-de-ajos/",
+    "padre": 270,
+    "productos": 3
+  },
+  {
+    "codigo": 324,
+    "nombre": "Peladora de Papas",
+    "slug": "peladora-de-papas",
+    "descripcion": "",
+    "url": "https://sagas.com.pe/product-category/equipos-para-procesar-alimentos/peladora-de-papas/",
+    "padre": 270,
+    "productos": 1
+  },
+  {
+    "codigo": 1426,
+    "nombre": "Peladora de Papas",
+    "slug": "peladora-de-papas-2",
+    "descripcion": "",
+    "url": "https://sagas.com.pe/product-category/equipos-para-servicios/peladora-de-papas-2/",
+    "padre": 364,
+    "productos": 2
+  },
+  {
+    "codigo": 511,
+    "nombre": "Picadora de Papas Fritas",
+    "slug": "picadora-de-papas-fritas",
+    "descripcion": "",
+    "url": "https://sagas.com.pe/product-category/equipos-para-procesar-alimentos/picadora-de-papas-fritas/",
+    "padre": 270,
+    "productos": 2
+  },
+  {
+    "codigo": 625,
+    "nombre": "Selladora Film",
+    "slug": "selladora-film",
+    "descripcion": "",
+    "url": "https://sagas.com.pe/product-category/selladora-film/",
+    "padre": 0,
+    "productos": 1
+  },
+  {
+    "codigo": 271,
+    "nombre": "Sierra",
+    "slug": "sierra",
+    "descripcion": "",
+    "url": "https://sagas.com.pe/product-category/equipos-para-procesar-alimentos/sierra/",
+    "padre": 270,
+    "productos": 6
+  },
+  {
+    "codigo": 417,
+    "nombre": "Sin Torre",
+    "slug": "sin-torre",
+    "descripcion": "",
+    "url": "https://sagas.com.pe/product-category/balanzas-electronica/sin-torre/",
+    "padre": 404,
+    "productos": 4
+  },
+  {
+    "codigo": 1471,
+    "nombre": "Trozador de Carnes & Pollo",
+    "slug": "trozador-de-carnes",
+    "descripcion": "",
+    "url": "https://sagas.com.pe/product-category/trozador-de-carnes/",
+    "padre": 0,
+    "productos": 1
+  }
+]

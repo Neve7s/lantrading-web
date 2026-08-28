@@ -1,0 +1,33 @@
+---
+interface Props { servicio: { codigo:number; nombre:string; slug:string; categoria:any; imagen_principal:string; imagenes: string[]; descripcion_corta:string; descripcion:string } }
+const { servicio } = Astro.props;
+import { buildGenericWhatsApp } from "../../lib/whatsapp";
+const wa = buildGenericWhatsApp(`Hola SAGAS, quisiera coordinar ${servicio.nombre} (cód. ${servicio.codigo})`);
+const imgs = servicio.imagenes?.length ? servicio.imagenes : [servicio.imagen_principal];
+---
+<article class="card overflow-hidden flex flex-col border-l-4 border-l-[var(--color-primary)] hover:shadow-[var(--shadow-float)] transition">
+  <div class="bg-[var(--paper-2)] px-3 py-2 flex items-center gap-2">
+    <span class="px-2 py-1 rounded-full text-[10px] font-bold bg-[var(--color-primary)] text-white tracking-wide">SERVICIO</span>
+    <span class="text-xs text-[var(--color-text-muted)]">{servicio.categoria?.nombre ?? "Soporte técnico"}</span>
+    <span class="ml-auto text-[11px] pill px-2 py-1">Cód. {servicio.codigo}</span>
+  </div>
+  {imgs.length === 1 ? (
+    <div class="bg-white p-2">
+      <img src={`/${imgs[0]}`} alt={servicio.nombre} loading="lazy" class="w-full h-auto object-contain max-h-[360px]" />
+    </div>
+  ) : (
+    <div class="grid grid-cols-2 gap-1 bg-white p-1">
+      {imgs.slice(0,4).map(im=>(
+        <img src={`/${im}`} alt={servicio.nombre} loading="lazy" class="w-full h-auto object-contain max-h-[280px] rounded-lg bg-white p-1" />
+      ))}
+    </div>
+  )}
+  <div class="p-4 flex flex-col gap-2 flex-1">
+    <h3 class="font-display font-semibold text-[15px] leading-tight">{servicio.nombre}</h3>
+    <p class="text-xs leading-relaxed text-[var(--color-text-muted)] line-clamp-3">{servicio.descripcion_corta}</p>
+    <div class="mt-auto flex gap-2 pt-2">
+      <a href={`/servicio/${servicio.slug}`} class="flex-1 text-center text-sm font-medium py-2.5 rounded-full border border-[var(--color-border)] hover:bg-[var(--paper-2)]">Ver detalle</a>
+      <a href={wa} target="_blank" class="flex-1 text-center text-sm font-bold py-2.5 rounded-full bg-[var(--color-primary)] text-white hover:bg-[var(--blue-800)]">Coordinar</a>
+    </div>
+  </div>
+</article>

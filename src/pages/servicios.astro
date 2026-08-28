@@ -1,0 +1,18 @@
+---
+import Layout from "../layouts/Layout.astro";
+import ServiceCard from "../components/catalog/ServiceCard.astro";
+import servicios from "../data/servicios.json";
+---
+<Layout title="Servicios técnicos | SAGAS">
+  <section class="max-w-[1420px] mx-auto px-4 md:px-6 py-8">
+    <div class="flex items-center gap-2">
+      <span class="w-2 h-2 rounded-full bg-[var(--color-primary)]"></span>
+      <span class="text-xs tracking-[0.12em] uppercase font-semibold text-[var(--color-text-muted)]">Servicios</span>
+    </div>
+    <h1 class="mt-2 font-display font-bold text-[24px]">Servicios técnicos</h1>
+    <p class="text-sm text-[var(--color-text-muted)] max-w-[700px]">No son productos · soporte calificado, repuestos originales, garantía 1 año. Galería 2×2 más completa, separada del catálogo.</p>
+    <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-5">
+      {servicios.map(s=> <ServiceCard servicio={s} />)}
+    </div>
+  </section>
+</Layout>

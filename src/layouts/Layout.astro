@@ -1,0 +1,66 @@
+---
+import "../styles/global.css";
+import Header from "../components/layout/Header.astro";
+import Footer from "../components/layout/Footer.astro";
+import FloatingWhatsApp from "../components/layout/FloatingWhatsApp.astro";
+interface Props { title?: string; description?: string; }
+const { title = "SAGAS — Balanzas y maquinaria | LAN TRADING S.A.", description = "40 años fabricando y distribuyendo balanzas electrónicas, maquinaria para carnicería y equipos para servicios. Envíos a todo el Perú." } = Astro.props;
+---
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="/logos/logo_sagas_x2-1.png" type="image/png" />
+    <link rel="icon" href="/favicon.png" type="image/png" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/logos/logo_sagas_x2-1.png" />
+    <title>{title}</title>
+  </head>
+  <body class="antialiased">
+    <Header />
+    <main><slot /></main>
+    <Footer />
+    <FloatingWhatsApp />
+    <style is:global>
+      html { scroll-behavior: smooth; }
+      .swap-logo { transition: opacity 0.25s ease; }
+      @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+    </style>
+    <script>
+      // iconos correo + favicon + header cada 3s
+      setInterval(() => {
+        document.querySelectorAll('.swap-logo').forEach((img) => {
+          const el = img as HTMLImageElement;
+          const isFooter = el.src.includes('logo_footer');
+          el.style.opacity = '0';
+          setTimeout(() => {
+            el.src = isFooter ? '/logos/logo_sagas_x2-1.png' : '/logos/logo_footer_true.png';
+            el.style.opacity = '1';
+          }, 250);
+        });
+        // header logos cross-fade
+        const a = document.getElementById('logo-a');
+        const b = document.getElementById('logo-b');
+        if (a && b) {
+          const aVisible = a.style.opacity !== '0';
+          a.style.opacity = aVisible ? '0' : '1';
+          b.style.opacity = aVisible ? '1' : '0';
+        }
+        // favicon alterna
+        const links = document.querySelectorAll('link[rel="icon"]');
+        links.forEach((l) => {
+          const el = l as HTMLLinkElement;
+          if (el.href.includes('logo_sagas')) el.href = '/logos/logo_footer_true.png';
+          else if (el.href.includes('logo_footer')) el.href = '/logos/logo_sagas_x2-1.png';
+          else if (el.href.includes('favicon')) el.href = el.href.includes('sagas') ? '/logos/logo_footer_true.png' : '/logos/logo_sagas_x2-1.png';
+        });
+      }, 3000);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,42 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import servicios from "../../data/servicios.json";
+import { buildGenericWhatsApp } from "../../lib/whatsapp";
+export async function getStaticPaths() {
+  return servicios.map((s:any)=> ({ params: { slug: s.slug }, props: { servicio: s } }));
+}
+const { servicio } = Astro.props as any;
+const wa = buildGenericWhatsApp(`Hola SAGAS, quisiera coordinar ${servicio.nombre} (cód. ${servicio.codigo}) — ${servicio.categoria?.nombre}`);
+---
+<Layout title={`${servicio.nombre} | SAGAS`} description={servicio.descripcion_corta}>
+  <div class="max-w-[1000px] mx-auto px-4 md:px-6 py-8">
+    <nav class="text-xs text-[var(--color-text-muted)]"><a href="/" class="hover:underline">Inicio</a> / <a href="/servicios" class="hover:underline">Servicios</a> / <span class="text-[var(--color-text)]">{servicio.nombre}</span></nav>
+    <div class="mt-4 card overflow-hidden">
+      {servicio.imagenes?.length > 1 ? (
+        <div class="grid grid-cols-2 gap-1 bg-white p-2">
+          {servicio.imagenes.map((im:string)=>(
+            <img src={`/${im}`} alt={servicio.nombre} class="w-full h-auto object-contain max-h-[420px] rounded-xl bg-white" />
+          ))}
+        </div>
+      ) : (
+        <div class="bg-white p-2">
+          <img src={`/${servicio.imagen_principal}`} alt={servicio.nombre} class="w-full h-auto object-contain max-h-[480px]" />
+        </div>
+      )}
+      <div class="p-6">
+        <span class="px-2.5 py-1 rounded-full text-xs bg-[var(--color-primary)] text-white">SERVICIO TÉCNICO</span>
+        <h1 class="mt-2 font-display font-bold text-[22px]">{servicio.nombre}</h1>
+        <p class="text-sm text-[var(--color-text-muted)]">{servicio.categoria?.nombre} · Cód. {servicio.codigo}</p>
+        <p class="mt-3 text-sm leading-relaxed">{servicio.descripcion}</p>
+        <div class="mt-4">
+          <div class="text-xs font-semibold uppercase tracking-wide">Qué incluye</div>
+          <div class="mt-2 flex flex-wrap gap-1.5">{servicio.beneficios.map((b:string)=>(<span class="pill px-3 py-1 text-xs">{b}</span>))}</div>
+        </div>
+        <div class="mt-6 flex gap-2">
+          <a href={wa} target="_blank" class="btn-accent flex-1 text-center py-3">Coordinar por WhatsApp →</a>
+          <a href="/servicios" class="flex-1 text-center py-3 rounded-full border border-[var(--color-border)]">Volver</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>

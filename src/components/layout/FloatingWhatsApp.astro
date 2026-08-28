@@ -1,0 +1,14 @@
+---
+import { buildGenericWhatsApp } from "../../lib/whatsapp";
+const url = buildGenericWhatsApp("Hola SAGAS, vi su nueva web y quisiera cotizar");
+---
+<a href={url} target="_blank" aria-label="WhatsApp ventas"
+  class="fixed bottom-4 right-4 z-50 w-14 h-14 rounded-full bg-[#25D366] text-white grid place-items-center shadow-[0_12px_32px_rgba(0,0,0,0.22)] hover:scale-[1.05] transition border border-white/20">
+  <svg viewBox="0 0 24 24" width="28" height="28" fill="white" aria-hidden="true">
+    <path d="M19.05 4.91A9.82 9.82 0 0 0 12.02 2C6.49 2 2.02 6.48 2.02 12.01c0 1.76.46 3.48 1.33 4.99L2 22l5.16-1.35a9.96 9.96 0 0 0 4.86 1.24h.01c5.53 0 10.01-4.48 10.01-10.01 0-2.67-1.04-5.18-2.93-7.07l-.06-.06ZM12.03 20.03h-.01a8.18 8.18 0 0 1-4.17-1.14l-.3-.18-3.06.8.82-2.98-.2-.31a8.2 8.2 0 0 1-1.26-4.21c0-4.54 3.69-8.23 8.23-8.23 2.2 0 4.27.86 5.82 2.41a8.18 8.18 0 0 1 2.41 5.82c0 4.54-3.7 8.23-8.28 8.23Zm6.77-6.16c-.37-.19-2.2-1.09-2.54-1.21-.34-.12-.59-.19-.84.19s-.97 1.21-1.19 1.46c-.22.25-.44.28-.81.09-.37-.19-1.57-.58-2.99-1.85-1.1-.98-1.85-2.2-2.07-2.57-.22-.37-.02-.57.17-.76.17-.17.37-.44.56-.66.19-.22.25-.37.37-.62.12-.25.06-.47-.03-.66-.09-.19-.84-2.02-1.15-2.77-.3-.72-.61-.62-.84-.63l-.72-.01c-.25 0-.66.09-1 .47-.34.37-1.31 1.28-1.31 3.12s1.34 3.62 1.53 3.87c.19.25 2.64 4.03 6.39 5.65.89.39 1.59.62 2.13.79.9.29 1.71.25 2.36.15.72-.11 2.2-.9 2.51-1.77.31-.87.31-1.62.22-1.77-.09-.15-.34-.25-.71-.44Z"/>
+  </svg>
+  <span class="sr-only">WhatsApp</span>
+</a>
+<a href="/catalogo" class="fixed bottom-4 left-4 z-50 hidden md:inline-flex items-center gap-2 bg-[var(--color-primary)] text-white px-4 py-3 rounded-full shadow-[var(--shadow-float)] font-medium text-sm hover:bg-[var(--blue-800)] transition">
+  Ver catálogo · 288 productos →
+</a>

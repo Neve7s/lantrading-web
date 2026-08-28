@@ -1,0 +1,78 @@
+---
+import Layout from "../layouts/Layout.astro";
+import empresa from "../data/empresa.json";
+---
+<Layout title="Nosotros — SAGAS | 40 años" description="Historia, misión y visión de LAN TRADING S.A. e INDUSTRIAS SAGAS S.R.L.">
+  <div class="max-w-[1000px] mx-auto px-4 md:px-6 py-10">
+    <div class="flex items-center gap-2">
+      <span class="w-2 h-2 rounded-full bg-[var(--color-accent)]"></span>
+      <span class="text-xs tracking-[0.12em] uppercase font-semibold text-[var(--color-text-muted)]">Nosotros</span>
+    </div>
+    <h1 class="mt-2 font-display font-bold text-[28px] leading-tight">LAN TRADING S.A. <span class="text-[var(--color-primary)]">·</span> INDUSTRIAS SAGAS S.R.L.</h1>
+    <p class="mt-2 text-sm leading-relaxed text-[var(--color-text-muted)] max-w-[800px]">
+      Distribuidor nacional con <strong>40 años</strong> fabricando, importando y brindando servicio técnico para balanzas y maquinaria gastronómica. Sede {empresa.sede.direccion} — {empresa.sede.referencia}.
+    </p>
+
+    <!-- Timeline historia -->
+    <div class="mt-8 card p-6 md:p-8">
+      <h2 class="font-display font-bold text-[18px]">Nuestra historia</h2>
+      <div class="mt-6 grid gap-6">
+        <div class="flex gap-4">
+          <div class="shrink-0 w-16 text-center">
+            <div class="inline-flex px-2.5 py-1 rounded-full bg-[var(--color-primary)] text-white text-xs font-bold">1982</div>
+            <div class="mx-auto mt-2 w-px h-12 bg-[var(--color-border)]"></div>
+          </div>
+          <div class="pb-4">
+            <h3 class="font-semibold text-sm">Fundación — INDUSTRIAS SAGAS S.R.L.</h3>
+            <p class="mt-1 text-sm leading-relaxed text-[var(--color-text-muted)]">{empresa.historia.fundacion}</p>
+          </div>
+        </div>
+        <div class="flex gap-4">
+          <div class="shrink-0 w-16 text-center">
+            <div class="inline-flex px-2.5 py-1 rounded-full bg-[var(--color-primary)] text-white text-xs font-bold">2004</div>
+            <div class="mx-auto mt-2 w-px h-12 bg-[var(--color-border)]"></div>
+          </div>
+          <div class="pb-4">
+            <h3 class="font-semibold text-sm">LAN TRADING S.A.</h3>
+            <p class="mt-1 text-sm leading-relaxed text-[var(--color-text-muted)]">{empresa.historia.expansion_2004}</p>
+          </div>
+        </div>
+        <div class="flex gap-4">
+          <div class="shrink-0 w-16 text-center">
+            <div class="inline-flex px-2.5 py-1 rounded-full bg-[var(--color-primary)] text-white text-xs font-bold">2007</div>
+          </div>
+          <div>
+            <h3 class="font-semibold text-sm">Expansión a maquinaria de alimentos</h3>
+            <p class="mt-1 text-sm leading-relaxed text-[var(--color-text-muted)]">{empresa.historia.expansion_2007}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Misión / Visión -->
+    <div class="mt-6 grid md:grid-cols-2 gap-4">
+      <div class="card p-6">
+        <div class="text-xs uppercase tracking-wide font-semibold text-[var(--color-accent)]">Misión</div>
+        <p class="mt-2 text-sm leading-relaxed">{empresa.mision}</p>
+      </div>
+      <div class="card p-6">
+        <div class="text-xs uppercase tracking-wide font-semibold text-[var(--color-primary)]">Visión</div>
+        <p class="mt-2 text-sm leading-relaxed">{empresa.vision}</p>
+      </div>
+    </div>
+
+    <!-- Propuesta + datos -->
+    <div class="mt-6 card p-6">
+      <h3 class="font-display font-semibold text-sm">Por qué SAGAS</h3>
+      <div class="mt-3 grid sm:grid-cols-2 gap-2">
+        {empresa.propuesta_valor.map(v=>(
+          <div class="flex items-center gap-2 text-sm"><span class="w-6 h-6 rounded-full bg-[var(--paper-2)] grid place-items-center border border-[var(--color-border)] text-xs">✓</span>{v}</div>
+        ))}
+      </div>
+      <div class="mt-6 grid sm:grid-cols-2 gap-4 text-sm">
+        <div><span class="font-semibold">Sede:</span> {empresa.sede.direccion}<br><span class="text-[var(--color-text-muted)]">{empresa.sede.referencia}</span></div>
+        <div><span class="font-semibold">Horario:</span> {empresa.horarios.lunes_viernes} · Sáb {empresa.horarios.sabados}</div>
+      </div>
+    </div>
+  </div>
+</Layout>
