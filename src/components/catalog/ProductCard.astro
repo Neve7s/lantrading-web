@@ -15,8 +15,8 @@ const img = `/${producto.imagen_principal}`;
 ---
 <article class="card overflow-hidden flex flex-col group hover:shadow-[var(--shadow-float)] transition-all">
   <a href={`/producto/${producto.slug}`} class="block overflow-hidden bg-[var(--paper-2)]">
-    <img src={img} alt={producto.nombre} loading="lazy" width="600" height="450"
-      class="w-full h-[190px] object-cover group-hover:scale-[1.02] transition duration-300" />
+    <img src={img} alt={producto.nombre} loading="lazy" decoding="async" width="600" height="450" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+      class="w-full aspect-[4/3] object-cover group-hover:scale-[1.02] transition duration-300" />
   </a>
   <div class="p-3.5 flex flex-col gap-1.5 flex-1">
     <div class="flex items-center gap-1.5 flex-wrap">

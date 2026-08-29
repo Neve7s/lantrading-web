@@ -4,8 +4,11 @@ import Header from "../components/layout/Header.astro";
 import Footer from "../components/layout/Footer.astro";
 import FloatingWhatsApp from "../components/layout/FloatingWhatsApp.astro";
 import BackgroundCollage from "../components/layout/BackgroundCollage.astro";
-interface Props { title?: string; description?: string; }
-const { title = "SAGAS — Balanzas y maquinaria | LAN TRADING S.A.", description = "40 años fabricando y distribuyendo balanzas electrónicas, maquinaria para carnicería y equipos para servicios. Envíos a todo el Perú." } = Astro.props;
+interface Props { title?: string; description?: string; canonical?: string; ogImage?: string; }
+const SITE = "https://sagas.com.pe";
+const { title = "SAGAS — Balanzas y maquinaria | LAN TRADING S.A.", description = "40 años fabricando y distribuyendo balanzas electrónicas, maquinaria para carnicería y equipos para servicios. Envíos a todo el Perú.", canonical, ogImage = "/logos/logo_sagas_x2-1.png" } = Astro.props;
+const canonicalURL = canonical ? new URL(canonical, SITE).toString() : new URL(Astro.url.pathname, SITE).toString();
+const ogImageURL = new URL(ogImage, SITE).toString();
 ---
 <!doctype html>
 <html lang="es">
@@ -14,6 +17,17 @@ const { title = "SAGAS — Balanzas y maquinaria | LAN TRADING S.A.", descriptio
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
     <meta name="generator" content={Astro.generator} />
+    <link rel="canonical" href={canonicalURL} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="SAGAS — LAN TRADING S.A." />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:image" content={ogImageURL} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageURL} />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700&display=swap" rel="stylesheet">
@@ -24,9 +38,10 @@ const { title = "SAGAS — Balanzas y maquinaria | LAN TRADING S.A.", descriptio
     <title>{title}</title>
   </head>
   <body class="antialiased relative">
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[100] focus:px-4 focus:py-2 focus:bg-[var(--color-primary)] focus:text-white focus:rounded-full">Saltar al contenido</a>
     <BackgroundCollage />
     <Header />
-    <main><slot /></main>
+    <main id="main-content"><slot /></main>
     <Footer />
     <FloatingWhatsApp />
     <style is:global>
@@ -35,34 +50,28 @@ const { title = "SAGAS — Balanzas y maquinaria | LAN TRADING S.A.", descriptio
       @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
     </style>
     <script>
-      // iconos correo + favicon + header cada 3s
-      setInterval(() => {
-        document.querySelectorAll('.swap-logo').forEach((img) => {
-          const el = img as HTMLImageElement;
-          const isFooter = el.src.includes('logo_footer');
-          el.style.opacity = '0';
-          setTimeout(() => {
-            el.src = isFooter ? '/logos/logo_sagas_x2-1.png' : '/logos/logo_footer_true.png';
-            el.style.opacity = '1';
-          }, 250);
-        });
-        // header logos cross-fade
-        const a = document.getElementById('logo-a');
-        const b = document.getElementById('logo-b');
-        if (a && b) {
-          const aVisible = a.style.opacity !== '0';
-          a.style.opacity = aVisible ? '0' : '1';
-          b.style.opacity = aVisible ? '1' : '0';
-        }
-        // favicon alterna
-        const links = document.querySelectorAll('link[rel="icon"]');
-        links.forEach((l) => {
-          const el = l as HTMLLinkElement;
-          if (el.href.includes('logo_sagas')) el.href = '/logos/logo_footer_true.png';
-          else if (el.href.includes('logo_footer')) el.href = '/logos/logo_sagas_x2-1.png';
-          else if (el.href.includes('favicon')) el.href = el.href.includes('sagas') ? '/logos/logo_footer_true.png' : '/logos/logo_sagas_x2-1.png';
-        });
-      }, 3000);
+      // respeta reduce-motion y evita flicker favicon
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (!reduce) {
+        setInterval(() => {
+          document.querySelectorAll('.swap-logo').forEach((img) => {
+            const el = img as HTMLImageElement;
+            const isFooter = el.src.includes('logo_footer');
+            el.style.opacity = '0';
+            setTimeout(() => {
+              el.src = isFooter ? '/logos/logo_sagas_x2-1.png' : '/logos/logo_footer_true.png';
+              el.style.opacity = '1';
+            }, 250);
+          });
+          const a = document.getElementById('logo-a');
+          const b = document.getElementById('logo-b');
+          if (a && b) {
+            const aVisible = a.style.opacity !== '0';
+            a.style.opacity = aVisible ? '0' : '1';
+            b.style.opacity = aVisible ? '1' : '0';
+          }
+        }, 3000);
+      }
     </script>
   </body>
 </html>

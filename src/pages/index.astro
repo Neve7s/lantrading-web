@@ -21,67 +21,99 @@ for (const p of soloProductos) {
   porCategoria.set(slug, arr);
 }
 const destacados = Array.from(porCategoria.values()).flat().slice(0, 12);
-const catsConProd = categorias.filter(c=> (porCategoria.get(c.slug)?.length ?? 0)>0).sort((a,b)=> b.productos-a.productos).slice(0,12);
+const catsConProdBase = categorias.filter(c=> (porCategoria.get(c.slug)?.length ?? 0)>0).sort((a,b)=> b.productos-a.productos).slice(0,12);
+const catsConProd = catsConProdBase.map(c=>{
+  const rep = porCategoria.get(c.slug)?.[0] || soloProductos.find(p=>p.categoria?.slug===c.slug);
+  return { ...c, imagen: rep?.imagen_principal || soloProductos[0]?.imagen_principal || "" };
+});
 ---
 <Layout title="SAGAS — Balanzas y maquinaria | 40 años">
-  <!-- HERO IMPACTANTE -->
+  <!-- HERO IMPACTANTE — ordenado y responsive -->
   <section class="relative overflow-hidden">
     <div class="absolute inset-0 bg-gradient-to-br from-[var(--blue-900)] via-[var(--blue-800)] to-[#0F172A]"></div>
     <div class="absolute inset-0 opacity-[0.07]" style="background-image: radial-gradient(circle at 2px 2px, white 1px, transparent 0); background-size: 28px 28px;"></div>
-    <div class="absolute -top-24 -right-24 w-[520px] h-[520px] bg-[var(--red-600)] rounded-full blur-[90px] opacity-20"></div>
-    <div class="absolute -bottom-32 -left-32 w-[600px] h-[600px] bg-white rounded-full blur-[100px] opacity-[0.06]"></div>
-    <div class="relative max-w-[1420px] mx-auto px-4 md:px-6 py-10 md:py-14">
-      <div class="grid lg:grid-cols-[1.1fr_0.9fr] gap-8 items-center">
-        <div class="text-white">
-          <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur border border-white/20 rounded-full px-4 py-1.5 text-xs tracking-wide">
+    <div class="absolute -top-24 -right-24 w-[520px] h-[520px] bg-[var(--red-600)] rounded-full blur-[90px] opacity-20 hidden sm:block"></div>
+    <div class="absolute -bottom-32 -left-32 w-[600px] h-[600px] bg-white rounded-full blur-[100px] opacity-[0.06] hidden sm:block"></div>
+    <div class="relative max-w-[1420px] mx-auto px-4 sm:px-5 md:px-6 py-8 sm:py-10 lg:py-14">
+      <div class="grid grid-cols-1 lg:grid-cols-[1.08fr_0.92fr] gap-6 sm:gap-8 lg:gap-10 items-start">
+        <!-- COLUMNA IZQUIERDA: texto -->
+        <div class="text-white flex flex-col order-1">
+          <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur border border-white/20 rounded-full px-4 py-1.5 text-xs tracking-wide w-fit">
             <span class="w-2 h-2 rounded-full bg-[#25D366] animate-pulse"></span> 40 AÑOS · LÍDERES EN EL PERÚ
           </div>
-          <h1 class="mt-4 font-display font-bold text-[36px] md:text-[56px] leading-[0.9] tracking-tight">
+          <h1 class="mt-4 font-display font-bold text-[32px] sm:text-[40px] md:text-[52px] lg:text-[56px] leading-[0.9] tracking-tight">
             MÁQUINAS<br><span class="text-white">QUE NO</span> <span class="text-[#FF3B30]">FALLAN</span>
           </h1>
-          <p class="mt-4 text-[16px] leading-relaxed text-white/80 max-w-[560px]">{empresa.identidad.descripcion}. Fabricación, importación y servicio técnico calificado — envíos a todo el Perú, garantía 1 año.</p>
-          <div class="mt-6 flex flex-wrap gap-3">
-            <a href="/catalogo" class="inline-flex items-center gap-2 bg-white text-[var(--blue-900)] px-6 py-3.5 rounded-full font-bold text-sm hover:bg-gray-100 transition shadow-lg">Ver catálogo →</a>
-            <a href="/nosotros" class="inline-flex items-center gap-2 bg-transparent border border-white/30 text-white px-6 py-3.5 rounded-full font-medium text-sm hover:bg-white/10 transition">Nuestra historia</a>
+          <p class="mt-3 sm:mt-4 text-[15px] sm:text-[16px] leading-relaxed text-white/80 max-w-[560px]">{empresa.identidad.descripcion}. Fabricación, importación y servicio técnico calificado — envíos a todo el Perú, garantía 1 año.</p>
+
+          <!-- Botones — solo desktop aquí, en mobile van después del carrusel -->
+          <div class="mt-6 hidden lg:flex flex-wrap gap-3">
+            <a href="/catalogo" class="inline-flex items-center justify-center gap-2 bg-white text-[var(--blue-900)] px-6 py-3.5 rounded-full font-bold text-sm hover:bg-gray-100 transition shadow-lg">Ver catálogo →</a>
+            <a href="/nosotros" class="inline-flex items-center justify-center gap-2 bg-transparent border border-white/30 text-white px-6 py-3.5 rounded-full font-medium text-sm hover:bg-white/10 transition">Nuestra historia</a>
           </div>
-          <div class="mt-8 grid grid-cols-3 gap-3 max-w-[460px]">
-            <div class="bg-white/10 backdrop-blur border border-white/20 rounded-2xl p-3 text-center">
-              <div class="font-display font-bold text-[22px] text-white">288</div><div class="text-xs text-white/70">productos</div>
-            </div>
-            <div class="bg-white/10 backdrop-blur border border-white/20 rounded-2xl p-3 text-center">
-              <div class="font-display font-bold text-[22px] text-white">64</div><div class="text-xs text-white/70">categorías</div>
-            </div>
-            <div class="bg-white text-[var(--blue-900)] rounded-2xl p-3 text-center">
-              <div class="font-display font-bold text-[22px]">40+</div><div class="text-xs opacity-70">años</div>
-            </div>
+
+          <!-- Propuesta valor — desktop: 2 columnas dentro de la columna izquierda -->
+          <div class="mt-8 hidden lg:grid grid-cols-2 gap-2.5 max-w-[560px]">
+            {empresa.propuesta_valor.slice(0,4).map(v=>(
+              <div class="flex items-center gap-2.5 rounded-2xl border border-white/15 bg-white/[0.08] px-3 py-2.5 text-white backdrop-blur-sm">
+                <div class="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-white text-[var(--blue-900)] shadow-sm">
+                  <svg viewBox="0 0 24 24" aria-hidden="true" class="h-4 w-4 fill-none stroke-current stroke-[2.7] leading-none">
+                    <path d="M5 12.5 9.5 17 19 7.5" />
+                  </svg>
+                </div>
+                <div class="text-[13px] font-medium leading-snug">{v}</div>
+              </div>
+            ))}
           </div>
         </div>
-        <div class="relative">
-          <div class="absolute inset-0 bg-gradient-to-tr from-white/10 to-transparent rounded-[24px] blur-xl"></div>
+
+        <!-- COLUMNA DERECHA: carrusel + stats debajo -->
+        <div class="relative order-2 flex flex-col">
+          <div class="absolute inset-0 bg-gradient-to-tr from-white/10 to-transparent rounded-[24px] blur-xl pointer-events-none"></div>
           <div class="relative">
             <HeroCarousel client:load />
-            <div class="absolute -bottom-4 -left-4 bg-white rounded-2xl shadow-[var(--shadow-float)] p-3 flex items-center gap-3 hidden md:flex">
+            <div class="absolute -bottom-4 -left-4 bg-white rounded-2xl shadow-[var(--shadow-float)] p-3 flex items-center gap-3 hidden lg:flex">
               <div class="grid h-10 w-10 place-items-center rounded-full bg-[#25D366] text-white shadow-sm">
-              <svg viewBox="0 0 24 24" aria-hidden="true" class="h-5 w-5 fill-none stroke-current stroke-[2.7] leading-none">
-                <path d="M5 12.5 9.5 17 19 7.5" />
-              </svg>
-            </div>
+                <svg viewBox="0 0 24 24" aria-hidden="true" class="h-5 w-5 fill-none stroke-current stroke-[2.7] leading-none">
+                  <path d="M5 12.5 9.5 17 19 7.5" />
+                </svg>
+              </div>
               <div class="text-sm"><div class="font-semibold">Garantía 1 año</div><div class="text-xs text-[var(--color-text-muted)]">Certificado incluido</div></div>
             </div>
           </div>
-        </div>
-      </div>
-      <div class="mt-8 max-w-[460px] space-y-2.5">
-        {empresa.propuesta_valor.slice(0,4).map(v=>(
-          <div class="flex items-center gap-3 rounded-2xl border border-white/15 bg-white/8 px-3 py-2.5 text-white backdrop-blur-sm">
-            <div class="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-white text-[var(--blue-900)] shadow-sm">
-              <svg viewBox="0 0 24 24" aria-hidden="true" class="h-4 w-4 fill-none stroke-current stroke-[2.7] leading-none">
-                <path d="M5 12.5 9.5 17 19 7.5" />
-              </svg>
+          <!-- Stats bajo las imágenes — responsive y glass -->
+          <div class="mt-3 sm:mt-4 grid grid-cols-3 gap-2 sm:gap-3">
+            <div class="bg-white/10 backdrop-blur border border-white/20 rounded-2xl p-2.5 sm:p-3 text-center">
+              <div class="font-display font-bold text-[18px] sm:text-[22px] text-white leading-none">288</div><div class="text-[11px] sm:text-xs text-white/70 mt-1">productos</div>
             </div>
-            <div class="text-sm font-medium leading-snug">{v}</div>
+            <div class="bg-white/10 backdrop-blur border border-white/20 rounded-2xl p-2.5 sm:p-3 text-center">
+              <div class="font-display font-bold text-[18px] sm:text-[22px] text-white leading-none">64</div><div class="text-[11px] sm:text-xs text-white/70 mt-1">categorías</div>
+            </div>
+            <div class="bg-white text-[var(--blue-900)] rounded-2xl p-2.5 sm:p-3 text-center shadow-lg">
+              <div class="font-display font-bold text-[18px] sm:text-[22px] leading-none">40+</div><div class="text-[11px] sm:text-xs opacity-70 mt-1">años</div>
+            </div>
           </div>
-        ))}
+        </div>
+
+        <!-- BLOQUE MOBILE: botones + propuesta valor (debajo del carrusel en < lg) -->
+        <div class="order-3 lg:hidden flex flex-col gap-4 sm:gap-6">
+          <div class="flex flex-col sm:flex-row gap-3">
+            <a href="/catalogo" class="inline-flex items-center justify-center gap-2 bg-white text-[var(--blue-900)] px-6 py-3.5 rounded-full font-bold text-sm hover:bg-gray-100 transition shadow-lg w-full sm:w-auto">Ver catálogo →</a>
+            <a href="/nosotros" class="inline-flex items-center justify-center gap-2 bg-transparent border border-white/30 text-white px-6 py-3.5 rounded-full font-medium text-sm hover:bg-white/10 transition w-full sm:w-auto">Nuestra historia</a>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+            {empresa.propuesta_valor.slice(0,4).map(v=>(
+              <div class="flex items-center gap-2.5 rounded-2xl border border-white/15 bg-white/[0.08] px-3 py-2.5 text-white backdrop-blur-sm">
+                <div class="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-white text-[var(--blue-900)] shadow-sm">
+                  <svg viewBox="0 0 24 24" aria-hidden="true" class="h-4 w-4 fill-none stroke-current stroke-[2.7] leading-none">
+                    <path d="M5 12.5 9.5 17 19 7.5" />
+                  </svg>
+                </div>
+                <div class="text-[13px] font-medium leading-snug">{v}</div>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -108,20 +140,39 @@ const catsConProd = categorias.filter(c=> (porCategoria.get(c.slug)?.length ?? 0
     </div>
   </section>
 
-  <!-- CATEGORIAS -->
+  <!-- CATEGORIAS — carrusel infinito con imagen de fondo -->
   <section class="max-w-[1420px] mx-auto px-4 md:px-6 py-6">
-    <h2 class="font-display font-bold text-[18px]">Categorías</h2>
-    <p class="text-sm text-[var(--color-text-muted)]">Catálogo de productos · 5 por categoría en demo (servicios en sección aparte)</p>
-    <div class="mt-4 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3">
-      {catsConProd.map(c=>(
-        <a href={`/catalogo?cat=${c.slug}`} class="card p-4 hover:shadow-[var(--shadow-float)] transition group">
-          <div class="text-sm font-semibold group-hover:text-[var(--color-primary)]">{c.nombre}</div>
-          <div class="text-xs text-[var(--color-text-muted)]">{c.productos} productos · {porCategoria.get(c.slug)?.length ?? 0} en demo</div>
-          <div class="mt-2 text-xs font-medium text-[var(--color-accent)]">Ver →</div>
-        </a>
-      ))}
+    <div class="flex items-end justify-between gap-3">
+      <div>
+        <h2 class="font-display font-bold text-[18px]">Categorías</h2>
+        <p class="text-sm text-[var(--color-text-muted)]">Explora por categoría — con imagen real del catálogo</p>
+      </div>
+      <a href="/catalogo" class="hidden sm:inline-flex pill px-3 py-1.5 text-xs font-medium hover:border-[var(--color-primary)] hover:text-[var(--color-primary)]">Ver todas →</a>
+    </div>
+    <div class="mt-5 relative overflow-hidden rounded-xl">
+      <!-- fade edges -->
+      <div class="pointer-events-none absolute inset-y-0 left-0 w-8 bg-gradient-to-r from-[var(--color-bg)] to-transparent z-10 hidden sm:block"></div>
+      <div class="pointer-events-none absolute inset-y-0 right-0 w-8 bg-gradient-to-l from-[var(--color-bg)] to-transparent z-10 hidden sm:block"></div>
+      <div class="flex gap-3 w-max animate-marquee-right hover:[animation-play-state:paused] will-change-transform">
+        {[...catsConProd, ...catsConProd].map((c, idx)=>(
+          <a href={`/catalogo?cat=${c.slug}`} key={`${c.slug}-${idx}`} aria-label={`Ver ${c.nombre}`} class="relative flex-none w-[200px] sm:w-[220px] h-[140px] sm:h-[160px] rounded-xl overflow-hidden group shrink-0 border border-[var(--color-border)]">
+            <img src={`/${c.imagen}`} alt={c.nombre} loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.06] transition duration-500" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent"></div>
+            <div class="absolute inset-0 opacity-0 group-hover:opacity-100 bg-[var(--color-primary)]/12 transition"></div>
+            <div class="relative mt-auto p-3 text-white flex flex-col justify-end h-full">
+              <div class="text-sm font-semibold leading-tight line-clamp-2 drop-shadow">{c.nombre}</div>
+              <div class="text-[11px] opacity-85 mt-0.5">{c.productos} productos</div>
+            </div>
+          </a>
+        ))}
+      </div>
     </div>
   </section>
+  <style>
+    @keyframes marquee-right { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+    .animate-marquee-right { animation: marquee-right 42s linear infinite; }
+    @media (prefers-reduced-motion: reduce) { .animate-marquee-right { animation: none; } }
+  </style>
 
   <!-- DESTACADOS productos (sin servicios) -->
   <section class="max-w-[1420px] mx-auto px-4 md:px-6 py-6">

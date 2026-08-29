@@ -16,9 +16,30 @@ const wa = buildWhatsAppUrl(producto, { categoria: producto.categoria?.nombre })
 const _solo = (productos as any[]).filter((p:any)=> !(servicios as any[]).some(s=>s.codigo===p.codigo));
 const relacionados = _solo.filter(p=> p.categoria?.slug===producto.categoria?.slug && p.codigo!==producto.codigo).slice(0,4);
 ---
-<Layout title={`${producto.nombre} | SAGAS`} description={producto.descripcion_corta}>
+<Layout title={`${producto.nombre} | SAGAS`} description={producto.descripcion_corta} canonical={`/producto/${producto.slug}`} ogImage={`/${producto.imagen_principal}`}>
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://sagas.com.pe/" },
+      { "@type": "ListItem", "position": 2, "name": "Catálogo", "item": "https://sagas.com.pe/catalogo" },
+      { "@type": "ListItem", "position": 3, "name": producto.categoria?.nombre || "Producto", "item": `https://sagas.com.pe/catalogo?cat=${producto.categoria?.slug || ''}` },
+      { "@type": "ListItem", "position": 4, "name": producto.nombre }
+    ]
+  })} />
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": producto.nombre,
+    "sku": String(producto.codigo),
+    "brand": { "@type": "Brand", "name": producto.marca || "SAGAS" },
+    "category": producto.categoria?.nombre,
+    "description": producto.descripcion_corta,
+    "image": producto.imagenes.map((im:string)=> `https://sagas.com.pe/${im}`),
+    "offers": { "@type": "Offer", "availability": "https://schema.org/InStock", "priceCurrency": producto.moneda || "PEN", "url": `https://sagas.com.pe/producto/${producto.slug}` }
+  })} />
   <div class="max-w-[1420px] mx-auto px-4 md:px-6 py-6">
-    <nav class="text-xs text-[var(--color-text-muted)]"><a href="/" class="hover:underline">Inicio</a> / <a href="/catalogo" class="hover:underline">Catálogo</a> / <a href={`/catalogo?cat=${producto.categoria?.slug}`} class="hover:underline">{producto.categoria?.nombre}</a> / <span class="text-[var(--color-text)]">{producto.nombre}</span></nav>
+    <nav aria-label="Breadcrumb" class="text-xs text-[var(--color-text-muted)]"><a href="/" class="hover:underline">Inicio</a> / <a href="/catalogo" class="hover:underline">Catálogo</a> / <a href={`/catalogo?cat=${producto.categoria?.slug}`} class="hover:underline">{producto.categoria?.nombre}</a> / <span class="text-[var(--color-text)]" aria-current="page">{producto.nombre}</span></nav>
 
     <div class="mt-4 grid lg:grid-cols-[1.1fr_0.9fr] gap-6">
       <Gallery client:load imagenes={producto.imagenes} nombre={producto.nombre} />
@@ -34,15 +55,17 @@ const relacionados = _solo.filter(p=> p.categoria?.slug===producto.categoria?.sl
           <p class="mt-2 text-sm leading-relaxed text-[var(--color-text-muted)]">{producto.descripcion_corta}</p>
         </div>
 
-        <div class="card p-4">
-          <div class="text-xs uppercase tracking-wide font-semibold text-[var(--color-text-muted)]">Especificaciones</div>
-          <div class="mt-2 grid gap-1.5">
-            {producto.especificaciones.length ? producto.especificaciones.map((s:string)=>(
-              <div class="flex gap-2 text-sm"><span class="text-[var(--color-text-muted)]">•</span><span>{s}</span></div>
-            )) : <div class="text-sm text-[var(--color-text-muted)]">Consulta por WhatsApp para ficha técnica completa.</div>}
+        <div class="card p-4 flex flex-col">
+          <div class="text-xs uppercase tracking-wide font-semibold text-[var(--color-text-muted)] shrink-0">Especificaciones</div>
+          <div class="mt-2 pr-1 max-h-[220px] sm:max-h-[260px] lg:max-h-[280px] overflow-y-auto overscroll-contain scrollbar-thin lg:scrollbar-thin">
+            <div class="grid gap-1.5">
+              {producto.especificaciones.length ? producto.especificaciones.map((s:string)=>(
+                <div class="flex gap-2 text-sm"><span class="text-[var(--color-text-muted)] shrink-0">•</span><span>{s}</span></div>
+              )) : <div class="text-sm text-[var(--color-text-muted)]">Consulta por WhatsApp para ficha técnica completa.</div>}
+            </div>
           </div>
           {producto.beneficios.length>0 && (
-            <div class="mt-3 pt-3 border-t border-[var(--color-border)]">
+            <div class="mt-3 pt-3 border-t border-[var(--color-border)] shrink-0">
               <div class="text-xs font-semibold">Beneficios</div>
               <div class="mt-1 flex flex-wrap gap-1.5">{producto.beneficios.map((b:string)=>(<span class="pill px-2.5 py-1 text-xs">{b}</span>))}</div>
             </div>
