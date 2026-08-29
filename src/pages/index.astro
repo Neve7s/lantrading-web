@@ -61,17 +61,25 @@ const catsConProd = categorias.filter(c=> (porCategoria.get(c.slug)?.length ?? 0
           <div class="relative">
             <HeroCarousel client:load />
             <div class="absolute -bottom-4 -left-4 bg-white rounded-2xl shadow-[var(--shadow-float)] p-3 flex items-center gap-3 hidden md:flex">
-              <div class="w-10 h-10 rounded-full bg-[#25D366] grid place-items-center text-white">✓</div>
+              <div class="grid h-10 w-10 place-items-center rounded-full bg-[#25D366] text-white shadow-sm">
+              <svg viewBox="0 0 24 24" aria-hidden="true" class="h-5 w-5 fill-none stroke-current stroke-[2.7] leading-none">
+                <path d="M5 12.5 9.5 17 19 7.5" />
+              </svg>
+            </div>
               <div class="text-sm"><div class="font-semibold">Garantía 1 año</div><div class="text-xs text-[var(--color-text-muted)]">Certificado incluido</div></div>
             </div>
           </div>
         </div>
       </div>
-      <div class="mt-8 grid grid-cols-2 md:grid-cols-4 gap-3">
+      <div class="mt-8 max-w-[460px] space-y-2.5">
         {empresa.propuesta_valor.slice(0,4).map(v=>(
-          <div class="bg-white/10 backdrop-blur border border-white/20 rounded-2xl p-3 flex items-center gap-3 text-white">
-            <div class="w-9 h-9 rounded-full bg-white text-[var(--blue-900)] grid place-items-center font-bold">✓</div>
-            <div class="text-sm font-medium">{v}</div>
+          <div class="flex items-center gap-3 rounded-2xl border border-white/15 bg-white/8 px-3 py-2.5 text-white backdrop-blur-sm">
+            <div class="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-white text-[var(--blue-900)] shadow-sm">
+              <svg viewBox="0 0 24 24" aria-hidden="true" class="h-4 w-4 fill-none stroke-current stroke-[2.7] leading-none">
+                <path d="M5 12.5 9.5 17 19 7.5" />
+              </svg>
+            </div>
+            <div class="text-sm font-medium leading-snug">{v}</div>
           </div>
         ))}
       </div>
