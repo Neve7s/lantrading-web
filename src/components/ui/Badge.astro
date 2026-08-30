@@ -1,6 +1,0 @@
----
-interface Props { tone?: "navy"|"red"|"muted" }
-const { tone="muted" } = Astro.props;
-const cls = tone==="navy" ? "bg-[var(--color-primary)] text-white border-transparent" : tone==="red" ? "bg-[var(--color-accent)] text-white border-transparent" : "bg-white text-[var(--color-text-muted)] border-[var(--color-border)]";
----
-<span class={`inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-medium tracking-wide border ${cls}`}><slot /></span>
