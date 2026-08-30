@@ -23,7 +23,65 @@ import empresa from "../../data/empresa.json";
     </a>
 
     <nav class="hidden lg:flex items-center gap-1 ml-4" aria-label="principal">
-      <a href="/" class="px-3 py-2 rounded-full text-sm font-medium hover:bg-[var(--paper-2)]">Inicio</a>
+      <!-- INICIO con mega-menu — estilo SAGAS (claro, centrado y amplio) -->
+      <div class="relative group">
+        <a href="/" class="px-3 py-2 rounded-full text-sm font-medium hover:bg-[var(--paper-2)] flex items-center gap-1">Inicio
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="opacity-60 group-hover:rotate-180 transition-transform duration-300" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </a>
+        <!-- mega panel — centrado en viewport, amplio, colores SAGAS -->
+        <div class="fixed left-1/2 -translate-x-1/2 top-[88px] w-[min(1280px,96vw)] opacity-0 invisible translate-y-1 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 group-focus-within:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 transition-all duration-300 z-50 pointer-events-none group-hover:pointer-events-auto group-focus-within:pointer-events-auto">
+          <div class="bg-white rounded-[20px] p-5 sm:p-6 shadow-[0_20px_60px_rgba(15,42,74,0.18)] border border-[var(--color-border)] overflow-hidden">
+            <div class="grid grid-cols-[220px_1fr_320px] gap-6">
+              <!-- COL IZQ: líneas -->
+              <div class="border-r border-[var(--color-border)] pr-6 flex flex-col">
+                <div class="text-[10px] tracking-[0.18em] font-bold text-[var(--color-primary)]">LÍNEAS DE PRODUCTOS</div>
+                <div class="mt-4 grid gap-0.5">
+                  <a href="/catalogo?cat=balanzas-de-plataforma" class="text-xs tracking-[0.06em] font-semibold text-[var(--color-text-muted)] hover:text-[var(--color-primary)] py-2 transition">BALANZAS DE PLATAFORMA</a>
+                  <a href="/catalogo?cat=balanzas-colgantes" class="text-xs tracking-[0.06em] font-semibold text-[var(--color-text-muted)] hover:text-[var(--color-primary)] py-2 transition">BALANZAS COLGANTES</a>
+                  <a href="/catalogo?cat=balanzas-de-precision" class="text-xs tracking-[0.06em] font-semibold text-[var(--color-text-muted)] hover:text-[var(--color-primary)] py-2 transition">BALANZAS DE PRECISIÓN</a>
+                  <a href="/catalogo?cat=moledora" class="text-xs tracking-[0.06em] font-semibold text-[var(--color-text-muted)] hover:text-[var(--color-primary)] py-2 transition">MOLEDORAS</a>
+                  <a href="/catalogo?cat=sierra" class="text-xs tracking-[0.06em] font-semibold text-[var(--color-text-muted)] hover:text-[var(--color-primary)] py-2 transition">SIERRAS</a>
+                  <a href="/catalogo?cat=cortadora-de-embutidos" class="text-xs tracking-[0.06em] font-semibold text-[var(--color-text-muted)] hover:text-[var(--color-primary)] py-2 transition">CORTADORAS</a>
+                  <a href="/catalogo?cat=embutidora-de-carne" class="text-xs tracking-[0.06em] font-semibold text-[var(--color-text-muted)] hover:text-[var(--color-primary)] py-2 transition">EMBUTIDORAS</a>
+                  <a href="/catalogo?cat=indicadores-de-balanzas" class="text-xs tracking-[0.06em] font-semibold text-[var(--color-text-muted)] hover:text-[var(--color-primary)] py-2 transition">INDICADORES</a>
+                </div>
+                <a href="/catalogo" class="mt-auto pt-4 text-[11px] font-bold tracking-[0.08em] text-[var(--color-accent)] hover:text-[var(--red-700)] flex items-center gap-1">VER TODO EL CATÁLOGO <span>→</span></a>
+              </div>
+              <!-- COL CENTRO: imagen grande — estilo SAGAS azul -->
+              <a href="/catalogo" class="relative rounded-[16px] overflow-hidden bg-[var(--paper-2)] border border-[var(--color-border)] group/card block">
+                <img src="/imagenes/21803__1.webp" alt="Calidad profesional" class="absolute inset-0 w-full h-full object-cover group-hover/card:scale-[1.03] transition duration-700" loading="lazy" />
+                <div class="absolute inset-0 bg-gradient-to-t from-[var(--blue-900)]/90 via-[var(--blue-900)]/20 to-transparent"></div>
+                <div class="absolute bottom-0 left-0 right-0 p-5">
+                  <div class="text-white font-bold tracking-tight text-[18px] leading-none">CALIDAD PROFESIONAL</div>
+                  <div class="text-white/90 text-[11px] font-bold tracking-[0.12em] mt-1.5 inline-flex bg-[var(--color-accent)] px-2.5 py-1 rounded-full">VER PRODUCTOS DESTACADOS</div>
+                </div>
+              </a>
+              <!-- COL DER: 2 mini + CTA — estilo claro -->
+              <div class="flex flex-col gap-3">
+                <div class="grid grid-cols-2 gap-3">
+                  <a href="/catalogo?cat=balanzas-de-plataforma" class="relative rounded-2xl overflow-hidden h-[148px] bg-white border border-[var(--color-border)] group/card">
+                    <img src="/imagenes/20570__1.webp" alt="Balanzas" class="absolute inset-0 w-full h-full object-cover group-hover/card:scale-[1.05] transition duration-500" loading="lazy" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-[var(--blue-900)]/75 to-transparent"></div>
+                    <div class="absolute inset-0 grid place-items-center"><span class="text-white text-[10px] font-bold tracking-[0.12em] drop-shadow">BALANZAS</span></div>
+                  </a>
+                  <a href="/catalogo?cat=cortadora-de-embutidos" class="relative rounded-2xl overflow-hidden h-[148px] bg-white border border-[var(--color-border)] group/card">
+                    <img src="/imagenes/21452__1.webp" alt="Maquinaria" class="absolute inset-0 w-full h-full object-cover group-hover/card:scale-[1.05] transition duration-500" loading="lazy" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-[var(--blue-900)]/75 to-transparent"></div>
+                    <div class="absolute inset-0 grid place-items-center"><span class="text-white text-[10px] font-bold tracking-[0.12em] drop-shadow">MAQUINARIA</span></div>
+                  </a>
+                </div>
+                <div class="flex-1 rounded-2xl bg-[var(--paper-2)] border border-[var(--color-border)] p-4 flex items-center justify-between gap-3">
+                  <div class="text-[10px] font-bold tracking-[0.12em] text-[var(--color-text-muted)] leading-tight">¿DUDAS? CHATEA AHORA</div>
+                  <a href="https://api.whatsapp.com/send?phone=51959683123&text=Hola%20SAGAS%2C%20vi%20su%20web%20y%20quiero%20asesor%C3%ADa" target="_blank" class="shrink-0 w-9 h-9 rounded-full bg-[#25D366] text-white grid place-items-center hover:scale-105 transition shadow-sm">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M19.05 4.91A9.82 9.82 0 0 0 12.02 2C6.49 2 2.02 6.48 2.02 12.01c0 1.76.46 3.48 1.33 4.99L2 22l5.16-1.35a9.96 9.96 0 0 0 4.86 1.24h.01c5.53 0 10.01-4.48 10.01-10.01 0-2.67-1.04-5.18-2.93-7.07l-.06-.06ZM12.03 20.03h-.01a8.18 8.18 0 0 1-4.17-1.14l-.3-.18-3.06.8.82-2.98-.2-.31a8.2 8.2 0 0 1-1.26-4.21c0-4.54 3.69-8.23 8.23-8.23 2.2 0 4.27.86 5.82 2.41a8.18 8.18 0 0 1 2.41 5.82c0 4.54-3.7 8.23-8.28 8.23Zm6.77-6.16c-.37-.19-2.2-1.09-2.54-1.21-.34-.12-.59-.19-.84.19s-.97 1.21-1.19 1.46c-.22.25-.44.28-.81.09-.37-.19-1.57-.58-2.99-1.85-1.1-.98-1.85-2.2-2.07-2.57-.22-.37-.02-.57.17-.76.17-.17.37-.44.56-.66.19-.22.25-.37.37-.62.12-.25.06-.47-.03-.66-.09-.19-.84-2.02-1.15-2.77-.3-.72-.61-.62-.84-.63l-.72-.01c-.25 0-.66.09-1 .47-.34.37-1.31 1.28-1.31 3.12s1.34 3.62 1.53 3.87c.19.25 2.64 4.03 6.39 5.65.89.39 1.59.62 2.13.79.9.29 1.71.25 2.36.15.72-.11 2.2-.9 2.51-1.77.31-.87.31-1.62.22-1.77-.09-.15-.34-.25-.71-.44Z"/></svg>
+                  </a>
+                </div>
+                <a href="/catalogo" class="rounded-xl bg-[var(--color-primary)] text-white text-center py-3 text-xs font-bold tracking-[0.08em] hover:bg-[var(--blue-800)] transition">EXPLORAR TIENDA</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       <a href="/catalogo" class="px-3 py-2 rounded-full text-sm font-medium hover:bg-[var(--paper-2)]">Catálogo</a>
       <a href="/servicios" class="px-3 py-2 rounded-full text-sm font-medium hover:bg-[var(--paper-2)]">Servicios</a>
       <a href="/nosotros" class="px-3 py-2 rounded-full text-sm font-medium hover:bg-[var(--paper-2)]">Nosotros</a>
