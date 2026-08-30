@@ -52,42 +52,54 @@ const ogImageURL = new URL(ogImage, SITE).toString();
       @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
     </style>
     <script>
-      // pestaña inactiva: "estamos aqui :) 👋"
+      // pestaña inactiva: alterna Hey ↔ estamos aqui :) 👋 cada 1s
       (() => {
         const original = document.title;
         let t;
+        let iv;
         document.addEventListener('visibilitychange', () => {
           clearTimeout(t);
+          clearInterval(iv);
           if (document.hidden) {
-            document.title = 'estamos aqui :) 👋';
+            let hey = true;
+            document.title = 'Hey 👋';
+            iv = setInterval(() => {
+              document.title = hey ? 'Estamos aqui :) 👋' : 'Hey 👋';
+              hey = !hey;
+            }, 1000);
           } else {
-            document.title = '¡volviste! 👋';
+            document.title = '¡Volviste! 👋';
             t = setTimeout(() => { document.title = original; }, 1500);
           }
         });
       })();
-      // respeta reduce-motion y evita flicker favicon
-      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if (!reduce) {
-        setInterval(() => {
-          document.querySelectorAll('.swap-logo').forEach((img) => {
-            const el = img as HTMLImageElement;
-            const isFooter = el.src.includes('logo_footer');
-            el.style.opacity = '0';
-            setTimeout(() => {
-              el.src = isFooter ? '/logos/logo_sagas_x2-1.png' : '/logos/logo_footer_true.png';
-              el.style.opacity = '1';
-            }, 250);
-          });
-          const a = document.getElementById('logo-a');
-          const b = document.getElementById('logo-b');
-          if (a && b) {
-            const aVisible = a.style.opacity !== '0';
-            a.style.opacity = aVisible ? '0' : '1';
-            b.style.opacity = aVisible ? '1' : '0';
-          }
-        }, 3000);
-      }
+      // logos intercambian cada 3s + favicon (ico pestaña)
+      setInterval(() => {
+        document.querySelectorAll('.swap-logo').forEach((img) => {
+          const el = img as HTMLImageElement;
+          const isFooter = el.src.includes('logo_footer');
+          el.style.opacity = '0';
+          setTimeout(() => {
+            el.src = isFooter ? '/logos/logo_sagas_x2-1.png' : '/logos/logo_footer_true.png';
+            el.style.opacity = '1';
+          }, 250);
+        });
+        const a = document.getElementById('logo-a');
+        const b = document.getElementById('logo-b');
+        if (a && b) {
+          const aVisible = a.style.opacity !== '0';
+          a.style.opacity = aVisible ? '0' : '1';
+          b.style.opacity = aVisible ? '1' : '0';
+        }
+        // favicon pestaña intercambia
+        const links = document.querySelectorAll('link[rel="icon"]');
+        links.forEach((l) => {
+          const el = l as HTMLLinkElement;
+          if (el.href.includes('logo_sagas')) el.href = '/logos/logo_footer_true.png';
+          else if (el.href.includes('logo_footer')) el.href = '/logos/logo_sagas_x2-1.png';
+          else if (el.href.includes('favicon')) el.href = el.href.includes('sagas') ? '/logos/logo_footer_true.png' : '/logos/logo_sagas_x2-1.png';
+        });
+      }, 3000);
     </script>
     <!-- CARRITO ESTÁTICO SAGAS -->
     <script is:inline>
