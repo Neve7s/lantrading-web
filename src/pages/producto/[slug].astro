@@ -74,9 +74,29 @@ const relacionados = _solo.filter(p=> p.categoria?.slug===producto.categoria?.sl
 
         <div class="card p-4 flex flex-col gap-3">
           <div class="text-sm font-bold text-[var(--color-accent)]">A cotizar · Precio por WhatsApp</div>
-          <a href={wa} target="_blank" class="btn-accent text-center text-[15px] py-3">Comprar por WhatsApp →</a>
+          <div class="grid grid-cols-2 gap-2">
+            <button type="button" id="detail-add-cart" class="btn-primary text-center text-[14px] py-3">Agregar al carrito</button>
+            <a href={wa} target="_blank" class="btn-accent text-center text-[14px] py-3">Comprar por WhatsApp →</a>
+          </div>
+          <div class="grid grid-cols-2 gap-2 text-xs">
+            <span class="text-center py-2 rounded-full border border-[var(--color-border)] bg-[var(--paper-2)]">Cantidad: <span id="detail-qty">1</span> <button type="button" id="qty-minus" class="ml-2 w-6 h-6 rounded-full bg-white border border-[var(--color-border)]">−</button> <button type="button" id="qty-plus" class="w-6 h-6 rounded-full bg-white border border-[var(--color-border)]">+</button></span>
+            <button type="button" id="detail-go-cart" class="text-center py-2 rounded-full border border-[var(--color-primary)] text-[var(--color-primary)] font-medium">Ver carrito →</button>
+          </div>
           <div class="text-xs text-[var(--color-text-muted)]">Te responde ventas en minutos. Envíos a todo el Perú · Garantía 1 año.</div>
         </div>
+        <script define:vars={{ producto }}>
+          const qtyEl = document.getElementById('detail-qty');
+          const minus = document.getElementById('qty-minus');
+          const plus = document.getElementById('qty-plus');
+          const addBtn = document.getElementById('detail-add-cart');
+          const goCart = document.getElementById('detail-go-cart');
+          let qty = 1;
+          const upd = ()=> { if(qtyEl) qtyEl.textContent = String(qty); };
+          minus?.addEventListener('click', ()=>{ if(qty>1){ qty--; upd(); }});
+          plus?.addEventListener('click', ()=>{ qty++; upd(); });
+          addBtn?.addEventListener('click', ()=>{ window.SagasCart?.add({ codigo: producto.codigo, nombre: producto.nombre, slug: producto.slug, imagen_principal: producto.imagen_principal, categoria: producto.categoria, qty }); });
+          goCart?.addEventListener('click', ()=>{ document.getElementById('cart-btn')?.click(); });
+        </script>
       </div>
     </div>
 

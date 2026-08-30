@@ -4,6 +4,7 @@ import Header from "../components/layout/Header.astro";
 import Footer from "../components/layout/Footer.astro";
 import FloatingWhatsApp from "../components/layout/FloatingWhatsApp.astro";
 import BackgroundCollage from "../components/layout/BackgroundCollage.astro";
+import MobileBottomBar from "../components/layout/MobileBottomBar.astro";
 interface Props { title?: string; description?: string; canonical?: string; ogImage?: string; }
 const SITE = "https://sagas.com.pe";
 const { title = "SAGAS — Balanzas y maquinaria | LAN TRADING S.A.", description = "40 años fabricando y distribuyendo balanzas electrónicas, maquinaria para carnicería y equipos para servicios. Envíos a todo el Perú.", canonical, ogImage = "/logos/logo_sagas_x2-1.png" } = Astro.props;
@@ -44,12 +45,27 @@ const ogImageURL = new URL(ogImage, SITE).toString();
     <main id="main-content"><slot /></main>
     <Footer />
     <FloatingWhatsApp />
+    <MobileBottomBar />
     <style is:global>
       html { scroll-behavior: smooth; }
       .swap-logo { transition: opacity 0.25s ease; }
       @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
     </style>
     <script>
+      // pestaña inactiva: "estamos aqui :) 👋"
+      (() => {
+        const original = document.title;
+        let t;
+        document.addEventListener('visibilitychange', () => {
+          clearTimeout(t);
+          if (document.hidden) {
+            document.title = 'estamos aqui :) 👋';
+          } else {
+            document.title = '¡volviste! 👋';
+            t = setTimeout(() => { document.title = original; }, 1500);
+          }
+        });
+      })();
       // respeta reduce-motion y evita flicker favicon
       const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       if (!reduce) {
@@ -72,6 +88,78 @@ const ogImageURL = new URL(ogImage, SITE).toString();
           }
         }, 3000);
       }
+    </script>
+    <!-- CARRITO ESTÁTICO SAGAS -->
+    <script is:inline>
+      (() => {
+        const KEY = 'sagas-cart';
+        const WHATSAPP = '51959683123';
+        const getCart = () => { try { return JSON.parse(localStorage.getItem(KEY) || '[]'); } catch { return []; } };
+        const saveCart = (c) => localStorage.setItem(KEY, JSON.stringify(c));
+        const getCount = () => getCart().reduce((a,c) => a + (c.qty||1), 0);
+        const dispatch = () => { window.dispatchEvent(new CustomEvent('cart:updated', { detail: { count: getCount(), cart: getCart() } })); updateBadge(); };
+
+        window.SagasCart = {
+          getCart, getCount,
+          add: (p) => {
+            const cart = getCart();
+            const i = cart.findIndex(x => x.codigo === p.codigo);
+            if (i >= 0) cart[i].qty = (cart[i].qty||1) + (p.qty||1);
+            else cart.push({ codigo: p.codigo, nombre: p.nombre, slug: p.slug, imagen: p.imagen_principal || p.imagen || '', categoria: p.categoria?.nombre || '', qty: p.qty||1 });
+            saveCart(cart); dispatch();
+            // toast simple
+            const t = document.createElement('div');
+            t.textContent = `Agregado: ${p.nombre} ✓`;
+            t.className = 'fixed bottom-20 left-1/2 -translate-x-1/2 z-[80] bg-[#0F172A] text-white text-sm px-4 py-2 rounded-full shadow-lg';
+            document.body.appendChild(t); setTimeout(()=> t.remove(), 1700);
+          },
+          remove: (codigo) => { saveCart(getCart().filter(x=>x.codigo!==codigo)); dispatch(); },
+          updateQty: (codigo, qty) => {
+            const cart = getCart();
+            const i = cart.findIndex(x=>x.codigo===codigo);
+            if (i>=0) { if (qty<=0) cart.splice(i,1); else cart[i].qty = qty; saveCart(cart); dispatch(); }
+          },
+          clear: () => { localStorage.removeItem(KEY); dispatch(); },
+          sendWhatsApp: () => {
+            const cart = getCart();
+            if (!cart.length) return;
+            let msg = 'Hola SAGAS 👋, quisiera cotizar este pedido:\n\n';
+            cart.forEach((it, idx) => {
+              msg += `${idx+1}. ${it.nombre} — Cód. ${it.codigo} x${it.qty}\n   https://sagas.com.pe/producto/${it.slug}\n`;
+            });
+            msg += `\nTotal items: ${getCount()}\n¿Precio y disponibilidad?`;
+            window.open(`https://api.whatsapp.com/send?phone=${WHATSAPP}&text=${encodeURIComponent(msg)}`, '_blank');
+          }
+        };
+        function updateBadge(){
+          const c = getCount();
+          document.querySelectorAll('[data-cart-count]').forEach(el=>{
+            el.textContent = String(c);
+            el.hidden = c===0;
+            el.classList.toggle('hidden', c===0);
+          });
+        }
+        // init
+        document.addEventListener('DOMContentLoaded', updateBadge);
+        // exponer para header
+        window.updateCartBadge = updateBadge;
+        // primera carga
+        updateBadge();
+        // delegación global para botones Agregar (ProductCard y catálogo dinámico)
+        document.addEventListener('click', (e) => {
+          const btn = e.target.closest('[data-add-cart]');
+          if (!btn) return;
+          const p = {
+            codigo: Number(btn.getAttribute('data-codigo')),
+            nombre: btn.getAttribute('data-nombre') || '',
+            slug: btn.getAttribute('data-slug') || '',
+            imagen_principal: btn.getAttribute('data-imagen') || '',
+            categoria: { nombre: btn.getAttribute('data-categoria') || '' },
+            qty: 1
+          };
+          if (window.SagasCart) window.SagasCart.add(p);
+        });
+      })();
     </script>
   </body>
 </html>

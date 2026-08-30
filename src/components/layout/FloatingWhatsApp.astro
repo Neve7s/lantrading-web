@@ -2,6 +2,14 @@
 import { buildGenericWhatsApp } from "../../lib/whatsapp";
 const url = buildGenericWhatsApp("Hola SAGAS, vi su nueva web y quisiera cotizar");
 ---
+<!-- Carrito flotante desktop — arriba de WhatsApp, fijo al scrollear -->
+<button id="floating-cart-btn" aria-label="Abrir carrito" class="hidden lg:grid fixed bottom-[88px] right-4 z-50 w-[60px] h-[60px] place-items-center rounded-full bg-white border border-[var(--color-border)] shadow-[0_8px_24px_rgba(0,0,0,0.18)] hover:scale-[1.05] transition">
+  <span class="relative">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6h15l-1.5 9h-13z"/><path d="M6 6L5 2H2"/><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/></svg>
+    <span data-cart-count class="hidden absolute -top-2 -right-2 min-w-[18px] h-[18px] px-1 rounded-full bg-[var(--color-accent)] text-white text-[11px] font-bold grid place-items-center leading-none">0</span>
+  </span>
+</button>
+
 <div class="fixed bottom-4 right-4 z-50 flex items-center gap-3">
   <div class="hidden sm:flex items-center gap-2 bg-white border border-[var(--color-border)] shadow-[var(--shadow-float)] rounded-full px-4 py-2.5">
     <span class="w-2 h-2 rounded-full bg-[#25D366] animate-pulse"></span>
@@ -13,6 +21,11 @@ const url = buildGenericWhatsApp("Hola SAGAS, vi su nueva web y quisiera cotizar
     <img src="/logos/whatsapp-icon.svg" alt="WhatsApp" width="60" height="60" class="w-[60px] h-[60px]" loading="eager" />
   </a>
 </div>
+<script>
+  document.getElementById('floating-cart-btn')?.addEventListener('click', () => {
+    document.getElementById('cart-btn')?.click();
+  });
+</script>
 <a href="/catalogo" class="fixed bottom-4 left-4 z-50 hidden md:inline-flex items-center gap-2 bg-[var(--color-primary)] text-white px-4 py-3 rounded-full shadow-[var(--shadow-float)] font-medium text-sm hover:bg-[var(--blue-800)] transition">
   Ver catálogo · 288 productos →
 </a>

@@ -93,6 +93,11 @@ import empresa from "../../data/empresa.json";
       <a href={`https://api.whatsapp.com/send?phone=51959683123&text=${encodeURIComponent('Hola SAGAS, quisiera cotizar')}`} target="_blank" class="hidden sm:inline-flex items-center gap-1.5 btn-accent !py-2 !px-4 text-[13px]">
         <span>WhatsApp</span> Ventas
       </a>
+      <!-- Carrito -->
+      <button id="cart-btn" aria-label="Carrito" class="relative w-10 h-10 grid place-items-center rounded-full border border-[var(--color-border)] bg-white hover:bg-[var(--paper-2)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary)] min-h-[44px] min-w-[44px]">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6h15l-1.5 9h-13z"/><path d="M6 6L5 2H2"/><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/></svg>
+        <span data-cart-count class="hidden absolute -top-1 -right-1 min-w-[18px] h-[18px] px-1 rounded-full bg-[var(--color-accent)] text-white text-[11px] font-bold grid place-items-center leading-none">0</span>
+      </button>
       <!-- hamburger mobile -->
       <button id="menu-btn" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-nav" class="lg:hidden w-10 h-10 grid place-items-center rounded-full border border-[var(--color-border)] bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary)] min-h-[44px] min-w-[44px]">
         <span id="menu-icon" aria-hidden="true" class="text-[18px]">☰</span>
@@ -113,7 +118,39 @@ import empresa from "../../data/empresa.json";
       </div>
     </nav>
   </div>
+
 </header>
+
+<!-- CARRITO DRAWER ESTÁTICO — fuera de header para que fixed sea viewport y no se mueva al scrollear -->
+<div id="cart-overlay" class="fixed inset-0 bg-black/30 backdrop-blur-sm hidden z-40" aria-hidden="true"></div>
+<aside id="cart-drawer" class="fixed top-0 right-0 h-[100dvh] w-[min(420px,96vw)] bg-white shadow-[0_20px_60px_rgba(0,0,0,0.25)] z-50 translate-x-full transition-transform duration-300 flex flex-col" aria-hidden="true" aria-label="Carrito de compras">
+    <div class="p-4 border-b border-[var(--color-border)] flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <span class="w-8 h-8 rounded-full bg-[var(--color-primary)] text-white grid place-items-center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M6 6h15l-1.5 9h-13z"/><path d="M6 6L5 2H2"/></svg></span>
+        <h2 class="font-display font-bold text-[16px]">Tu pedido</h2>
+        <span data-cart-count class="hidden min-w-[20px] h-5 px-1.5 rounded-full bg-[var(--color-accent)] text-white text-xs font-bold grid place-items-center">0</span>
+      </div>
+      <button id="cart-close" aria-label="Cerrar carrito" class="w-9 h-9 rounded-full border border-[var(--color-border)] grid place-items-center hover:bg-[var(--paper-2)]">✕</button>
+    </div>
+    <div id="cart-items" class="flex-1 overflow-y-auto p-4 grid gap-3 content-start"></div>
+    <div id="cart-empty" class="flex-1 hidden p-8 text-center flex flex-col items-center justify-center gap-3">
+      <div class="w-16 h-16 rounded-full bg-[var(--paper-2)] grid place-items-center text-2xl">🛒</div>
+      <p class="text-sm text-[var(--color-text-muted)]">Tu carrito está vacío.<br>Agrega productos para cotizar.</p>
+      <a href="/catalogo" class="btn-primary" onclick="document.getElementById('cart-drawer')?.classList.add('translate-x-full')">Ver catálogo →</a>
+    </div>
+    <div class="p-4 border-t border-[var(--color-border)] space-y-3 bg-[var(--paper-2)]">
+      <div class="flex items-center justify-between text-sm">
+        <span class="text-[var(--color-text-muted)]">Total items</span>
+        <span id="cart-total" class="font-bold">0</span>
+      </div>
+      <button id="cart-send" class="w-full btn-accent py-3 text-sm font-bold flex items-center justify-center gap-2">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M19.05 4.91A9.82 9.82 0 0 0 12.02 2C6.49 2 2.02 6.48 2.02 12.01c0 1.76.46 3.48 1.33 4.99L2 22l5.16-1.35a9.96 9.96 0 0 0 4.86 1.24h.01c5.53 0 10.01-4.48 10.01-10.01 0-2.67-1.04-5.18-2.93-7.07l-.06-.06ZM12.03 20.03h-.01a8.18 8.18 0 0 1-4.17-1.14l-.3-.18-3.06.8.82-2.98-.2-.31a8.2 8.2 0 0 1-1.26-4.21c0-4.54 3.69-8.23 8.23-8.23 2.2 0 4.27.86 5.82 2.41a8.18 8.18 0 0 1 2.41 5.82c0 4.54-3.7 8.23-8.28 8.23Zm6.77-6.16c-.37-.19-2.2-1.09-2.54-1.21-.34-.12-.59-.19-.84.19s-.97 1.21-1.19 1.46c-.22.25-.44.28-.81.09-.37-.19-1.57-.58-2.99-1.85-1.1-.98-1.85-2.2-2.07-2.57-.22-.37-.02-.57.17-.76.17-.17.37-.44.56-.66.19-.22.25-.37.37-.62.12-.25.06-.47-.03-.66-.09-.19-.84-2.02-1.15-2.77-.3-.72-.61-.62-.84-.63l-.72-.01c-.25 0-.66.09-1 .47-.34.37-1.31 1.28-1.31 3.12s1.34 3.62 1.53 3.87c.19.25 2.64 4.03 6.39 5.65.89.39 1.59.62 2.13.79.9.29 1.71.25 2.36.15.72-.11 2.2-.9 2.51-1.77.31-.87.31-1.62.22-1.77-.09-.15-.34-.25-.71-.44Z"/></svg>
+        Enviar pedido por WhatsApp
+      </button>
+      <button id="cart-clear" class="w-full py-2 text-xs font-medium text-[var(--color-text-muted)] hover:text-[var(--color-accent)]">Vaciar carrito</button>
+      <p class="text-[11px] text-center text-[var(--color-text-muted)]">Pedido estático — se envía como lista a WhatsApp ventas.</p>
+    </div>
+  </aside>
 <script>
   const btn = document.getElementById('menu-btn');
   const nav = document.getElementById('mobile-nav');
@@ -129,4 +166,69 @@ import empresa from "../../data/empresa.json";
     btn?.setAttribute('aria-expanded','false');
     if(icon) icon.textContent='☰';
   }));
+
+  // Carrito drawer
+  const cartBtn = document.getElementById('cart-btn');
+  const cartDrawer = document.getElementById('cart-drawer');
+  const cartOverlay = document.getElementById('cart-overlay');
+  const cartClose = document.getElementById('cart-close');
+  const cartItems = document.getElementById('cart-items');
+  const cartEmpty = document.getElementById('cart-empty');
+  const cartTotal = document.getElementById('cart-total');
+  const cartSend = document.getElementById('cart-send');
+  const cartClear = document.getElementById('cart-clear');
+
+  function openCart(){
+    cartDrawer?.classList.remove('translate-x-full');
+    cartOverlay?.classList.remove('hidden');
+    cartDrawer?.setAttribute('aria-hidden','false');
+    renderCart();
+  }
+  function closeCart(){
+    cartDrawer?.classList.add('translate-x-full');
+    cartOverlay?.classList.add('hidden');
+    cartDrawer?.setAttribute('aria-hidden','true');
+  }
+  cartBtn?.addEventListener('click', openCart);
+  cartClose?.addEventListener('click', closeCart);
+  cartOverlay?.addEventListener('click', closeCart);
+  document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeCart(); });
+
+  function renderCart(){
+    const cart = window.SagasCart?.getCart() || [];
+    if (!cartItems) return;
+    if (cart.length===0){
+      cartItems.classList.add('hidden');
+      cartEmpty?.classList.remove('hidden');
+      if (cartTotal) cartTotal.textContent='0';
+      return;
+    }
+    cartEmpty?.classList.add('hidden');
+    cartItems.classList.remove('hidden');
+    cartItems.innerHTML = cart.map(it=>`
+      <div class="flex gap-3 p-3 rounded-xl border border-[var(--color-border)] bg-white">
+        <img src="/${it.imagen}" alt="${it.nombre}" class="w-16 h-16 object-contain rounded-lg bg-[var(--paper-2)] p-1 shrink-0" loading="lazy" />
+        <div class="flex-1 min-w-0">
+          <div class="text-xs font-semibold leading-tight line-clamp-2">${it.nombre}</div>
+          <div class="text-[11px] text-[var(--color-text-muted)]">Cód. ${it.codigo} · ${it.categoria||''}</div>
+          <div class="mt-2 flex items-center gap-2">
+            <button data-dec="${it.codigo}" class="w-7 h-7 rounded-full border border-[var(--color-border)] grid place-items-center hover:bg-[var(--paper-2)]">−</button>
+            <span class="text-sm font-bold min-w-[20px] text-center">${it.qty}</span>
+            <button data-inc="${it.codigo}" class="w-7 h-7 rounded-full border border-[var(--color-border)] grid place-items-center hover:bg-[var(--paper-2)]">+</button>
+            <button data-rm="${it.codigo}" class="ml-auto text-xs text-[var(--color-accent)] hover:underline">Quitar</button>
+          </div>
+        </div>
+      </div>
+    `).join('');
+    if (cartTotal) cartTotal.textContent = String(window.SagasCart.getCount());
+    // bind qty
+    cartItems.querySelectorAll('[data-inc]').forEach(b=> b.addEventListener('click', ()=>{ const c=b.getAttribute('data-inc'); const it=cart.find(x=>String(x.codigo)===c); if(it) window.SagasCart.updateQty(it.codigo, it.qty+1); renderCart(); }));
+    cartItems.querySelectorAll('[data-dec]').forEach(b=> b.addEventListener('click', ()=>{ const c=b.getAttribute('data-dec'); const it=cart.find(x=>String(x.codigo)===c); if(it) window.SagasCart.updateQty(it.codigo, it.qty-1); renderCart(); }));
+    cartItems.querySelectorAll('[data-rm]').forEach(b=> b.addEventListener('click', ()=>{ window.SagasCart.remove(Number(b.getAttribute('data-rm'))); renderCart(); }));
+  }
+  window.addEventListener('cart:updated', renderCart);
+  cartSend?.addEventListener('click', ()=> window.SagasCart?.sendWhatsApp());
+  cartClear?.addEventListener('click', ()=> { window.SagasCart?.clear(); renderCart(); });
+  // render inicial
+  renderCart();
 </script>

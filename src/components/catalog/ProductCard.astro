@@ -31,9 +31,10 @@ const img = `/${producto.imagen_principal}`;
       <span class="pill px-2 py-1">Cód. {producto.codigo}</span>
       <span class="ml-auto text-[11px] font-medium text-[var(--color-accent)]">A cotizar</span>
     </div>
-    <div class="mt-2 grid grid-cols-2 gap-2">
-      <a href={`/producto/${producto.slug}`} class="text-center text-sm font-medium py-2 rounded-full border border-[var(--color-border)] hover:bg-[var(--paper-2)]">Ver detalle</a>
-      <a href={wa} target="_blank" class="text-center text-sm font-bold py-2 rounded-full bg-[var(--color-accent)] text-white hover:bg-[var(--red-700)]">Comprar</a>
+    <div class="mt-2 grid grid-cols-3 gap-1.5">
+      <a href={`/producto/${producto.slug}`} class="text-center text-xs font-medium py-2.5 rounded-full border border-[var(--color-border)] hover:bg-[var(--paper-2)] grid place-items-center">Ver</a>
+      <button type="button" data-add-cart data-codigo={producto.codigo} data-nombre={producto.nombre} data-slug={producto.slug} data-imagen={producto.imagen_principal} data-categoria={producto.categoria?.nombre} class="text-center text-xs font-bold py-2.5 rounded-full bg-[var(--color-primary)] text-white hover:bg-[var(--blue-800)] grid place-items-center">Agregar</button>
+      <a href={wa} target="_blank" class="text-center text-xs font-bold py-2.5 rounded-full bg-[var(--color-accent)] text-white hover:bg-[var(--red-700)] grid place-items-center">Comprar</a>
     </div>
   </div>
 </article>
